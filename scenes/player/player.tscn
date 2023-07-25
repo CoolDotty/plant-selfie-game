@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt6jmjihvqh3x"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_avdhi"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww7dt"]
+radius = 0.3
+height = 1.8
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_avdhi")
+
+[node name="CShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ww7dt")
+
+[node name="Camera" type="Camera3D" parent="."]
+fov = 105.0
