@@ -1,0 +1,10 @@
+Cassidy: [[Hi|Hai|Ko-knee-chi-wah]], I love your store!
+- What's up?
+	Cassidy: I commission Tora-chan for art all the time!
+	Cassidy: Her timeline is full of twinks and blue flowers.
+	- Uh, cool ... I think ... => END
+- Thanks! bye!
+	Cassidy: Believe it!
+	=> END
+
+=> END

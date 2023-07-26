@@ -11,5 +11,5 @@ func _process(delta):
 	pass
 
 
-func _on_player_photo_taken(texture):
+func _on_player_photo_taken(texture, poi, foi, everything):
 	$Sprite2D.texture = texture

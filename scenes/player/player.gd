@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 
-signal photo_taken(texture)
+signal photo_taken(texture, poi, foi, everything)
 
 
 @export_category("Player")
@@ -24,45 +24,186 @@ var grav_vel: Vector3 # Gravity velocity
 var jump_vel: Vector3 # Jumping velocity
 
 @onready var camera: Camera3D = $Camera
+@onready var phone_ui = $PhoneUI
+@onready var subview = $PhoneUI/CameraAppView/SubViewportContainer/SubViewport
+@onready var phone_camera = $PhoneUI/CameraAppView/SubViewportContainer/SubViewport/phone_camera
+
+@export var move_freeze := false
+@export var phone_freeze := false
+
+@export var phone_on := false
+
+@onready var CameraAppView = $PhoneUI/CameraAppView
+@onready var GallaryAppView = $PhoneUI/GallaryAppView
+@onready var ShareAppView = $PhoneUI/ShareAppView
 
 func _ready() -> void:
 	capture_mouse()
+	
+	DialogueManager.got_dialogue.connect(on_dialogue_start)
+	DialogueManager.dialogue_ended.connect(on_dialogue_end)
+	
+	CameraAppView.visible = false
+	GallaryAppView.visible = false
+	ShareAppView.visible = false
+
+func on_dialogue_start(_line):
+	release_mouse()
+	phone_freeze = true
+
+func on_dialogue_end(_res):
+	capture_mouse()
+	phone_freeze = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("exit"): release_mouse()
+	if move_freeze: return
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		look_dir = event.relative * 0.001
 		if mouse_captured: _rotate_camera()
 	if Input.is_action_just_pressed("jump"): jumping = true
-	if Input.is_action_just_pressed("exit"): release_mouse()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT: capture_mouse()
 	
-	if Input.is_action_just_pressed("take_photo"):
-		take_photo()
+	if Input.is_action_just_pressed("interact"):
+		attempt_to_talk()
+
+var current_photo = null
 
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)
 	move_and_slide()
+	
+	if is_instance_valid(phone_camera):
+		phone_camera.global_transform = $Camera.global_transform
+		phone_camera.fov = $Camera.fov * 3 / 4
+	
+	if Input.is_action_just_pressed("toggle_phone"):
+		if phone_on:
+			phone_on = false
+			CameraAppView.visible = false
+			GallaryAppView.visible = false
+			ShareAppView.visible = false
+			capture_mouse()
+		else:
+			phone_on = true
+			CameraAppView.visible = true
+			GallaryAppView.visible = false
+			ShareAppView.visible = false
+	
+	if phone_freeze:
+		phone_on = false
+		CameraAppView.visible = false
+		GallaryAppView.visible = false
+		ShareAppView.visible = false
+	
+	var phone_target: float = 0.0 if phone_on else 135.0
+	phone_ui.rotation_degrees = lerp(phone_ui.rotation_degrees, phone_target, 0.1)
+	
+	if CameraAppView.visible:
+		if Input.is_action_just_pressed("take_photo"):
+			current_photo = take_photo()
+			CameraAppView.visible = false
+			GallaryAppView.visible = true
+	if GallaryAppView.visible:
+		GallaryAppView.get_node("PicturePreview").texture = current_photo.photo
+		release_mouse()
+	if ShareAppView.visible:
+		pass
+	
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
 		capture_mouse()
 
+
+func _on_reject_picture_pressed():
+	CameraAppView.visible = true
+	GallaryAppView.visible = false
+	ShareAppView.visible = false
+	capture_mouse()
+
+
+func _on_accept_picture_pressed():
+	CameraAppView.visible = false
+	GallaryAppView.visible = false
+	ShareAppView.visible = true
+	ShareAppView.get_node("Control/PicturePreview").texture = current_photo.photo
+	ShareAppView.get_node("Control/PicturePreview").size = Vector2(256, 256)
+
+
+
+const max_distance_to_talk = 2.0
+func attempt_to_talk():
+	var bodies_in_photo: Array[Node3D] = $Camera/SnapshotHitbox.get_overlapping_bodies()
+	var person_of_interest
+	for interest in bodies_in_photo:
+		if not (interest is Customer):
+			continue
+		if not is_instance_valid(person_of_interest):
+			if interest.global_position.distance_to(global_position) < max_distance_to_talk:
+				person_of_interest = interest
+		else:
+			if person_of_interest.global_position.distance_to(global_position) > interest.global_position.distance_to(global_position):
+				person_of_interest = interest
+	
+	if is_instance_valid(person_of_interest):
+		person_of_interest.talk(self)
+
 func take_photo():
 	# Retrieve the captured image.
-	var img = get_viewport().get_texture().get_image()
+	var img = subview.get_texture().get_image()
 	var photo = ImageTexture.create_from_image(img)
 	
+	var bodies_in_photo: Array[Node3D] = $Camera/SnapshotHitbox.get_overlapping_bodies()
+	var interests_in_photo = bodies_in_photo.filter(
+		func(b):
+			if b == self:
+				return false
+			if b is Customer:
+				return true
+			if b is Flower:
+				return true
+			return false
+	)
+	
+	var person_of_interest
+	var flower_of_interest
+	
+	for interest in interests_in_photo:
+		if interest is Customer:
+			if not is_instance_valid(person_of_interest):
+				person_of_interest = interest
+			else:
+				if person_of_interest.global_position.distance_to(global_position) > interest.global_position.distance_to(global_position):
+					person_of_interest = interest
+		if interest is Flower:
+			if not is_instance_valid(flower_of_interest):
+				flower_of_interest = interest
+			else:
+				if flower_of_interest.global_position.distance_to(global_position) > interest.global_position.distance_to(global_position):
+					flower_of_interest = interest
+	
 	# Set the texture to the captured image node.
-	photo_taken.emit(photo)
+	return {
+		"photo": photo,
+		"poi": person_of_interest,
+		"foi": flower_of_interest,
+		"interests": interests_in_photo
+	}
+
 
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true
+	phone_ui.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	move_freeze = false
 
 func release_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	mouse_captured = false
+	phone_ui.mouse_filter = Control.MOUSE_FILTER_PASS
+	move_freeze = true
 
 func _rotate_camera(sens_mod: float = 1.0) -> void:
 	camera.rotation.y -= look_dir.x * camera_sens * sens_mod
@@ -76,6 +217,7 @@ func _handle_joypad_camera_rotation(delta: float, sens_mod: float = 1.0) -> void
 		look_dir = Vector2.ZERO
 
 func _walk(delta: float) -> Vector3:
+	if move_freeze: return Vector3.ZERO
 	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backwards")
 	var _forward: Vector3 = camera.transform.basis * Vector3(move_dir.x, 0, move_dir.y)
 	var walk_dir: Vector3 = Vector3(_forward.x, 0, _forward.z).normalized()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bksx2gk2jxum"
+path="res://.godot/imported/weaboo.dialogue-8f249884e120f5e8b63d56cdf16d4422.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/weaboo/weaboo.dialogue"
+dest_files=["res://.godot/imported/weaboo.dialogue-8f249884e120f5e8b63d56cdf16d4422.tres"]
+
+[params]
+
+defaults=true
