@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=19 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://dhqiw4myevoas" path="res://assets/showallS_col.dae" id="9_3t4y5"]
 [ext_resource type="PackedScene" uid="uid://ytj0ameox0g3" path="res://assets/shopwallW_col.dae" id="10_8je36"]
 [ext_resource type="PackedScene" uid="uid://b3drqdeglrt2h" path="res://assets/showallE_col.dae" id="11_4gexa"]
+[ext_resource type="PackedScene" uid="uid://bbv30l1oygoe4" path="res://assets/frontcounter.dae" id="12_i3bms"]
+[ext_resource type="PackedScene" uid="uid://x3xpe5owksqt" path="res://assets/frontCounter_col.dae" id="13_ybtha"]
+[ext_resource type="PackedScene" uid="uid://cg34ukf5aqwt" path="res://assets/displaytable.dae" id="14_jpj4s"]
+[ext_resource type="PackedScene" uid="uid://c6wnf7j4kow63" path="res://assets/displaytable_col.dae" id="15_6d8uk"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hp3b0"]
 
@@ -44,23 +48,47 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_8xhp7")
 
 [node name="sign" parent="." instance=ExtResource("5_j3g6c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117803, 0.364332, 0.0752383)
+transform = Transform3D(0.826943, 0, 0.562285, 0, 1, 0, -0.562285, 0, 0.826943, -3.26122, 0.364332, 2.51839)
 
 [node name="sign_col" parent="sign" instance=ExtResource("6_yxopl")]
 visible = false
 
 [node name="shopWalls" parent="." instance=ExtResource("7_ycmq1")]
 
-[node name="showallS_col" parent="." instance=ExtResource("9_3t4y5")]
+[node name="showallS_col" parent="shopWalls" instance=ExtResource("9_3t4y5")]
 visible = false
 
-[node name="shopwallN_col" parent="." instance=ExtResource("9_0lmks")]
+[node name="shopwallN_col" parent="shopWalls" instance=ExtResource("9_0lmks")]
 visible = false
 
-[node name="shopwallW_col" parent="." instance=ExtResource("10_8je36")]
+[node name="shopwallW_col" parent="shopWalls" instance=ExtResource("10_8je36")]
 visible = false
 
-[node name="showallE_col" parent="." instance=ExtResource("11_4gexa")]
+[node name="showallE_col" parent="shopWalls" instance=ExtResource("11_4gexa")]
+visible = false
+
+[node name="frontcounter" parent="." instance=ExtResource("12_i3bms")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.73585)
+
+[node name="frontCounter_col" parent="frontcounter" instance=ExtResource("13_ybtha")]
+visible = false
+
+[node name="displaytable" parent="." instance=ExtResource("14_jpj4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.89978, 0.00766599, -0.173315)
+
+[node name="displaytable_col" parent="displaytable" instance=ExtResource("15_6d8uk")]
+visible = false
+
+[node name="displaytable4" parent="." instance=ExtResource("14_jpj4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93603, 0.00209999, -0.170794)
+
+[node name="displaytable_col" parent="displaytable4" instance=ExtResource("15_6d8uk")]
+visible = false
+
+[node name="displaytable3" parent="." instance=ExtResource("14_jpj4s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92518, 0.00766599, 2.313)
+
+[node name="displaytable_col" parent="displaytable3" instance=ExtResource("15_6d8uk")]
 visible = false
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]

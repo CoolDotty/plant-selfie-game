@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author/>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments/>
+    </contributor>
+    <created>2023-07-26T03:51:31Z</created>
+    <keywords/>
+    <modified>2023-07-26T03:51:31Z</modified>
+    <revision/>
+    <subject/>
+    <title/>
+    <unit meter="0.010000" name="centimeter"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="frontcounter_col-lib" name="frontcounter_colMesh">
+      <mesh>
+        <source id="frontcounter_col-POSITION">
+          <float_array id="frontcounter_col-POSITION-array" count="24">
+-112.269348 0.000001 62.502422
+112.269348 0.000001 62.502422
+-112.269348 83.760605 62.502422
+112.269348 83.760605 62.502422
+-112.269348 83.760605 -62.502422
+112.269348 83.760605 -62.502422
+-112.269348 0.000001 -62.502422
+112.269348 0.000001 -62.502422
+</float_array>
+          <technique_common>
+            <accessor source="#frontcounter_col-POSITION-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="frontcounter_col-Normal0">
+          <float_array id="frontcounter_col-Normal0-array" count="108">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#frontcounter_col-Normal0-array" count="36" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="frontcounter_col-UV0">
+          <float_array id="frontcounter_col-UV0-array" count="28">
+0.375000 0.000000
+0.625000 0.000000
+0.625000 0.250000
+0.375000 0.250000
+0.625000 0.500000
+0.375000 0.500000
+0.625000 0.750000
+0.375000 0.750000
+0.625000 1.000000
+0.375000 1.000000
+0.875000 0.000000
+0.875000 0.250000
+0.125000 0.000000
+0.125000 0.250000
+</float_array>
+          <technique_common>
+            <accessor source="#frontcounter_col-UV0-array" count="14" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="frontcounter_col-VERTEX">
+          <input semantic="POSITION" source="#frontcounter_col-POSITION"/>
+        </vertices>
+        <triangles count="12" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#frontcounter_col-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#frontcounter_col-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#frontcounter_col-UV0"/>
+          <p> 3 0 2 2 1 3 0 2 0 3 3 2 0 4 0 1 5 1 2 6 3 3 7 2 5 8 4 2 9 3 5 10 4 4 11 5 7 12 6 6 13 7 4 14 5 7 15 6 4 16 5 5 17 4 1 18 8 0 19 9 6 20 7 1 21 8 6 22 7 7 23 6 3 24 2 1 25 1 5 26 11 1 27 1 7 28 10 5 29 11 2 30 3 6 31 12 0 32 0 6 33 12 2 34 3 4 35 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="register_col-lib" name="register_colMesh">
+      <mesh>
+        <source id="register_col-POSITION">
+          <float_array id="register_col-POSITION-array" count="36">
+-20.326838 83.760597 26.704731
+20.326838 83.760597 26.704731
+-20.326838 122.219391 26.704731
+20.326838 122.219391 26.704731
+-20.326838 122.219391 -2.634525
+20.326838 122.219391 -2.634525
+-20.326838 83.760597 -16.687250
+20.326838 83.760597 -16.687250
+-20.326838 98.776604 26.704731
+-20.326838 98.776604 -16.687250
+20.326838 98.776604 -16.687250
+20.326838 98.776604 26.704731
+</float_array>
+          <technique_common>
+            <accessor source="#register_col-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="register_col-Normal0">
+          <float_array id="register_col-Normal0-array" count="180">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.343203 -0.939261
+0.000000 0.000000 -1.000000
+0.000000 0.343203 -0.939261
+0.000000 0.343203 -0.939261
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 0.343203 -0.939261
+0.000000 0.343203 -0.939261
+0.000000 0.514147 -0.857702
+0.000000 0.343203 -0.939261
+0.000000 0.514147 -0.857702
+0.000000 0.514147 -0.857702
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#register_col-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="register_col-UV0">
+          <float_array id="register_col-UV0-array" count="40">
+0.375000 0.000000
+0.625000 0.000000
+0.375000 0.250000
+0.625000 0.250000
+0.375000 0.500000
+0.625000 0.500000
+0.375000 0.750000
+0.625000 0.750000
+0.375000 1.000000
+0.625000 1.000000
+0.875000 0.000000
+0.875000 0.250000
+0.125000 0.000000
+0.125000 0.250000
+0.375000 0.097611
+0.125000 0.097611
+0.375000 0.652389
+0.625000 0.652389
+0.875000 0.097611
+0.625000 0.097611
+</float_array>
+          <technique_common>
+            <accessor source="#register_col-UV0-array" count="20" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="register_col-VERTEX">
+          <input semantic="POSITION" source="#register_col-POSITION"/>
+        </vertices>
+        <triangles count="20" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#register_col-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#register_col-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#register_col-UV0"/>
+          <p> 11 0 19 8 1 14 0 2 0 11 3 19 0 4 0 1 5 1 3 6 3 5 7 5 2 8 2 2 9 2 5 10 5 4 11 4 7 12 7 6 13 6 9 14 16 7 15 7 9 16 16 10 17 17 1 18 9 0 19 8 6 20 6 1 21 9 6 22 6 7 23 7 10 24 18 11 25 19 1 26 1 1 27 1 7 28 10 10 29 18 8 30 14 6 31 12 0 32 0 6 33 12 8 34 14 9 35 15 8 36 14 4 37 13 9 38 15 4 39 13 8 40 14 2 41 2 10 42 17 9 43 16 4 44 4 10 45 17 4 46 4 5 47 5 3 48 3 11 49 19 5 50 11 11 51 19 10 52 18 5 53 11 3 54 3 2 55 2 8 56 14 3 57 3 8 58 14 11 59 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="counter_col" name="counter_col">
+      <node name="frontcounter_col" id="frontcounter_col" sid="frontcounter_col">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#frontcounter_col-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
+      </node>
+      <node name="register_col" id="register_col" sid="register_col">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#register_col-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>24.000000</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0.000000</start_time>
+          <end_time>41.666667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#counter_col"/>
+  </scene>
+</COLLADA>
