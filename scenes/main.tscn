@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=15 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
 [ext_resource type="PackedScene" uid="uid://dt6jmjihvqh3x" path="res://scenes/player/player.tscn" id="2_xmwbm"]
 [ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="3_8xhp7"]
+[ext_resource type="PackedScene" uid="uid://d2e0h8v8naupf" path="res://assets/sign.dae" id="5_j3g6c"]
+[ext_resource type="PackedScene" uid="uid://bgyejvjj3mf2j" path="res://assets/sign_col.dae" id="6_yxopl"]
+[ext_resource type="PackedScene" uid="uid://daqlvmc01o7e7" path="res://assets/shopWalls.dae" id="7_ycmq1"]
+[ext_resource type="PackedScene" uid="uid://codnk1rclpvh" path="res://assets/shopwallN_col.dae" id="9_0lmks"]
+[ext_resource type="PackedScene" uid="uid://dhqiw4myevoas" path="res://assets/showallS_col.dae" id="9_3t4y5"]
+[ext_resource type="PackedScene" uid="uid://ytj0ameox0g3" path="res://assets/shopwallW_col.dae" id="10_8je36"]
+[ext_resource type="PackedScene" uid="uid://b3drqdeglrt2h" path="res://assets/showallE_col.dae" id="11_4gexa"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hp3b0"]
 
@@ -35,5 +42,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81094, 0)
 position = Vector2(100, 100)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_8xhp7")
+
+[node name="sign" parent="." instance=ExtResource("5_j3g6c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117803, 0.364332, 0.0752383)
+
+[node name="sign_col" parent="sign" instance=ExtResource("6_yxopl")]
+visible = false
+
+[node name="shopWalls" parent="." instance=ExtResource("7_ycmq1")]
+
+[node name="showallS_col" parent="." instance=ExtResource("9_3t4y5")]
+visible = false
+
+[node name="shopwallN_col" parent="." instance=ExtResource("9_0lmks")]
+visible = false
+
+[node name="shopwallW_col" parent="." instance=ExtResource("10_8je36")]
+visible = false
+
+[node name="showallE_col" parent="." instance=ExtResource("11_4gexa")]
+visible = false
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]

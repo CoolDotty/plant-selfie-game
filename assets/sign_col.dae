@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author/>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments/>
+    </contributor>
+    <created>2023-07-26T03:20:50Z</created>
+    <keywords/>
+    <modified>2023-07-26T03:20:50Z</modified>
+    <revision/>
+    <subject/>
+    <title/>
+    <unit meter="0.010000" name="centimeter"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="sign_col-lib" name="sign_colMesh">
+      <mesh>
+        <source id="sign_col-POSITION">
+          <float_array id="sign_col-POSITION-array" count="36">
+-66.821060 -30.294270 39.348316
+-66.821060 -30.294270 -39.348316
+-66.821060 32.923935 -3.278756
+-66.821060 32.923935 3.278756
+0.000000 -31.542562 36.069580
+0.000000 -31.542562 -36.069580
+0.000000 32.273506 -3.278756
+0.000000 32.273506 3.278756
+66.821060 -30.294270 39.348316
+66.821060 -30.294270 -39.348316
+66.821060 32.923935 -3.278756
+66.821060 32.923935 3.278756
+</float_array>
+          <technique_common>
+            <accessor source="#sign_col-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="sign_col-Normal0">
+          <float_array id="sign_col-Normal0-array" count="180">
+-0.000000 0.476552 0.879147
+0.028328 0.476360 0.878794
+0.028328 0.476360 0.878794
+-0.000000 0.476552 0.879147
+0.028328 0.476360 0.878794
+-0.000000 0.476552 0.879147
+0.028328 0.476360 -0.878794
+0.000000 0.476552 -0.879147
+0.000000 0.476552 -0.879147
+0.000000 0.476552 -0.879147
+0.028328 0.476360 -0.878794
+0.028328 0.476360 -0.878794
+0.000000 -1.000000 0.000000
+-0.018678 -0.999826 0.000000
+-0.018678 -0.999826 0.000000
+0.000000 -1.000000 0.000000
+-0.018678 -0.999826 0.000000
+0.000000 -1.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+-1.000000 -0.000000 0.000000
+0.000000 1.000000 0.000000
+0.009733 0.999953 0.000000
+0.009733 0.999953 0.000000
+0.009733 0.999953 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.000000 0.476552 0.879147
+-0.028328 0.476360 0.878794
+-0.028328 0.476360 0.878794
+-0.028328 0.476360 0.878794
+-0.000000 0.476552 0.879147
+-0.000000 0.476552 0.879147
+-0.028328 0.476360 -0.878794
+0.000000 0.476552 -0.879147
+-0.028328 0.476360 -0.878794
+0.000000 0.476552 -0.879147
+-0.028328 0.476360 -0.878794
+0.000000 0.476552 -0.879147
+0.000000 -1.000000 0.000000
+0.018678 -0.999826 0.000000
+0.018678 -0.999826 0.000000
+0.018678 -0.999826 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+1.000000 -0.000000 0.000000
+1.000000 -0.000000 0.000000
+1.000000 -0.000000 0.000000
+1.000000 -0.000000 0.000000
+1.000000 -0.000000 0.000000
+1.000000 -0.000000 0.000000
+0.000000 1.000000 0.000000
+-0.009733 0.999953 0.000000
+-0.009733 0.999953 0.000000
+0.000000 1.000000 0.000000
+-0.009733 0.999953 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#sign_col-Normal0-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="sign_col-UV0">
+          <float_array id="sign_col-UV0-array" count="48">
+0.375000 1.000000
+0.125000 0.000000
+0.277779 0.305558
+0.298611 0.368053
+0.375000 0.750000
+0.375000 0.000000
+0.298611 0.305558
+0.500000 0.000000
+0.500000 1.000000
+0.500000 0.750000
+0.499306 0.371524
+0.499306 0.302781
+0.375000 0.000000
+0.500000 0.000000
+0.499306 0.302781
+0.298611 0.305558
+0.298611 0.368053
+0.499306 0.371524
+0.500000 0.750000
+0.375000 0.750000
+0.500000 1.000000
+0.375000 1.000000
+0.125000 0.000000
+0.277779 0.305558
+</float_array>
+          <technique_common>
+            <accessor source="#sign_col-UV0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="sign_col-VERTEX">
+          <input semantic="POSITION" source="#sign_col-POSITION"/>
+        </vertices>
+        <triangles count="20" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#sign_col-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#sign_col-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#sign_col-UV0"/>
+          <p> 7 0 11 3 1 6 0 2 5 7 3 11 0 4 5 4 5 7 1 6 4 6 7 10 5 8 9 6 9 10 1 10 4 2 11 3 4 12 8 0 13 0 1 14 4 4 15 8 1 16 4 5 17 9 3 18 6 1 19 1 0 20 5 1 21 1 3 22 6 2 23 2 7 24 11 2 25 3 3 26 6 2 27 3 7 28 11 6 29 10 7 30 14 8 31 12 11 32 15 8 33 12 7 34 14 4 35 13 9 36 19 6 37 17 10 38 16 6 39 17 9 40 19 5 41 18 4 42 20 9 43 19 8 44 21 9 45 19 4 46 20 5 47 18 11 48 15 8 49 12 9 50 22 11 51 15 9 52 22 10 53 23 7 54 14 11 55 15 10 56 16 7 57 14 10 58 16 6 59 17</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="sign_col" name="sign_col">
+      <node name="sign_col" id="sign_col" sid="sign_col">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#sign_col-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>24.000000</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0.000000</start_time>
+          <end_time>41.666667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#sign_col"/>
+  </scene>
+</COLLADA>
