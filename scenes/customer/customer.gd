@@ -4,6 +4,7 @@ class_name Customer
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+@export var full_name: String = "Customer"
 @export var front_sprite = preload("res://icon.svg")
 @export var back_sprite = preload("res://icon.svg")
 @export var dialogue: DialogueResource

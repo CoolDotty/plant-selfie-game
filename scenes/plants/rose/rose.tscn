@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8jfsuroroct3"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_ad2oj"]
+[ext_resource type="Texture2D" uid="uid://cheea67ns8xkw" path="res://assets/plants/rose.png" id="2_wk3fw"]
+
+[node name="flower" instance=ExtResource("1_ad2oj")]
+full_name = "Rose"
+front_sprite = ExtResource("2_wk3fw")

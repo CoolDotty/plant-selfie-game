@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bw6k18xom2yht" path="res://assets/npc_bodies/weaboo_back.png" id="3_blem2"]
 
 [node name="weaboo" instance=ExtResource("1_o1vrl")]
+full_name = "Cassidy"
 front_sprite = ExtResource("2_a5087")
 back_sprite = ExtResource("3_blem2")
 dialogue = ExtResource("3_067bj")

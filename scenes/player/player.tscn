@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://dt6jmjihvqh3x"]
+[gd_scene load_steps=12 format=3 uid="uid://dt6jmjihvqh3x"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_avdhi"]
 [ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_0g55o"]
 [ext_resource type="Texture2D" uid="uid://bbr0wdm7mgkuy" path="res://assets/phone_overlay.png" id="2_thmkd"]
 [ext_resource type="Texture2D" uid="uid://be84k8o7nts3g" path="res://assets/circle.png" id="2_yhcll"]
 [ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="4_nmboj"]
+[ext_resource type="Texture2D" uid="uid://dt67vr3oggp70" path="res://assets/logos/facebooklogo.png" id="5_wt8dn"]
+[ext_resource type="Texture2D" uid="uid://dhxi8n2lagu7b" path="res://assets/logos/deviantartlogo.png" id="6_2txdh"]
+[ext_resource type="Texture2D" uid="uid://dx2nloqav0cwo" path="res://assets/logos/instagramlogo.png" id="7_kq776"]
+[ext_resource type="Texture2D" uid="uid://dwp27qeafsus8" path="res://assets/logos/redditlogo.png" id="8_fjxbx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww7dt"]
 radius = 0.3
@@ -159,16 +163,19 @@ offset_top = 50.0
 offset_right = 152.0
 offset_bottom = 186.0
 scale = Vector2(0.35, 0.35)
-icon = ExtResource("4_nmboj")
+icon = ExtResource("5_wt8dn")
+icon_alignment = 1
+expand_icon = true
 
-[node name="Pixiv" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
+[node name="DeviantArt" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
 offset_left = 86.0001
 offset_top = 49.0
 offset_right = 222.0
 offset_bottom = 185.0
 scale = Vector2(0.35, 0.35)
-icon = ExtResource("4_nmboj")
+icon = ExtResource("6_2txdh")
+expand_icon = true
 
 [node name="Instagram" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
@@ -177,7 +184,8 @@ offset_top = 49.0
 offset_right = 294.0
 offset_bottom = 185.0
 scale = Vector2(0.35, 0.35)
-icon = ExtResource("4_nmboj")
+icon = ExtResource("7_kq776")
+expand_icon = true
 
 [node name="Reddit" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
@@ -186,7 +194,8 @@ offset_top = 48.0
 offset_right = 362.0
 offset_bottom = 184.0
 scale = Vector2(0.35, 0.35)
-icon = ExtResource("4_nmboj")
+icon = ExtResource("8_fjxbx")
+expand_icon = true
 
 [node name="Trash" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
@@ -197,6 +206,7 @@ offset_bottom = 275.0
 scale = Vector2(0.35, 0.35)
 text = "Delete!"
 icon = ExtResource("4_nmboj")
+expand_icon = true
 
 [node name="Post" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
@@ -207,6 +217,7 @@ offset_bottom = 276.0
 scale = Vector2(0.35, 0.35)
 text = "Post!"
 icon = ExtResource("4_nmboj")
+expand_icon = true
 
 [node name="PhoneOverlay" type="Sprite2D" parent="PhoneUI"]
 position = Vector2(684, 374)
@@ -214,3 +225,9 @@ texture = ExtResource("2_thmkd")
 
 [connection signal="pressed" from="PhoneUI/GallaryAppView/GridContainer/RejectPicture" to="." method="_on_reject_picture_pressed"]
 [connection signal="pressed" from="PhoneUI/GallaryAppView/GridContainer/AcceptPicture" to="." method="_on_accept_picture_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/Facebook" to="." method="_on_facebook_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/DeviantArt" to="." method="_on_deviant_art_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/Instagram" to="." method="_on_instagram_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/Reddit" to="." method="_on_reddit_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/Trash" to="." method="_on_trash_pressed"]
+[connection signal="pressed" from="PhoneUI/ShareAppView/Control/ColorRect/Post" to="." method="_on_post_pressed"]

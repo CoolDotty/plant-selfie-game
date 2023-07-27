@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 
-signal photo_taken(texture, poi, foi, everything)
+signal photo_taken(texture: Texture, poi: Customer, foi: Flower, site: String, everything)
 
 
 @export_category("Player")
@@ -67,6 +67,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		attempt_to_talk()
 
+
+func _on_facebook_pressed(): selected_social = "facebook"
+func _on_deviant_art_pressed(): selected_social = "deviantart"
+func _on_instagram_pressed(): selected_social = "instagram"
+func _on_reddit_pressed(): selected_social = "reddit"
+var selected_social = "facebook"
 var current_photo = null
 
 func _physics_process(delta: float) -> void:
@@ -80,16 +86,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("toggle_phone"):
 		if phone_on:
-			phone_on = false
-			CameraAppView.visible = false
-			GallaryAppView.visible = false
-			ShareAppView.visible = false
-			capture_mouse()
+			turn_off_phone()
 		else:
-			phone_on = true
-			CameraAppView.visible = true
-			GallaryAppView.visible = false
-			ShareAppView.visible = false
+			turn_on_phone()
 	
 	if phone_freeze:
 		phone_on = false
@@ -105,16 +104,42 @@ func _physics_process(delta: float) -> void:
 			current_photo = take_photo()
 			CameraAppView.visible = false
 			GallaryAppView.visible = true
+	
 	if GallaryAppView.visible:
 		GallaryAppView.get_node("PicturePreview").texture = current_photo.photo
 		release_mouse()
-	if ShareAppView.visible:
-		pass
 	
+	if ShareAppView.visible:
+		match selected_social:
+			"facebook":
+				$PhoneUI/ShareAppView/ColorRect.color = Color.DARK_CYAN
+			"deviantart":
+				$PhoneUI/ShareAppView/ColorRect.color = Color.DARK_GREEN
+			"reddit":
+				$PhoneUI/ShareAppView/ColorRect.color = Color.ORANGE_RED
+			"instagram":
+				$PhoneUI/ShareAppView/ColorRect.color = Color.REBECCA_PURPLE
 
-func _notification(what):
-	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
-		capture_mouse()
+func turn_off_phone():
+	current_photo = null
+	phone_on = false
+	CameraAppView.visible = false
+	GallaryAppView.visible = false
+	ShareAppView.visible = false
+	capture_mouse()
+
+func turn_on_phone():
+	phone_on = true
+	CameraAppView.visible = true
+	GallaryAppView.visible = false
+	ShareAppView.visible = false
+
+func _on_trash_pressed(): 
+	_on_reject_picture_pressed()
+
+func _on_post_pressed():
+	photo_taken.emit(current_photo.photo, current_photo.poi, current_photo.foi, selected_social, current_photo.interests)
+	turn_off_phone()
 
 
 func _on_reject_picture_pressed():
@@ -130,7 +155,12 @@ func _on_accept_picture_pressed():
 	ShareAppView.visible = true
 	ShareAppView.get_node("Control/PicturePreview").texture = current_photo.photo
 	ShareAppView.get_node("Control/PicturePreview").size = Vector2(256, 256)
+	selected_social = "facebook"
 
+
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_APPLICATION_FOCUS_IN:
+		capture_mouse()
 
 
 const max_distance_to_talk = 2.0

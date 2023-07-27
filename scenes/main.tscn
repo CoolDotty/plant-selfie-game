@@ -1,13 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=9 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
 [ext_resource type="PackedScene" uid="uid://dt6jmjihvqh3x" path="res://scenes/player/player.tscn" id="2_xmwbm"]
-[ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="3_8xhp7"]
-[ext_resource type="PackedScene" uid="uid://bj8b84ws0xe1e" path="res://scenes/customer/customer.tscn" id="5_toab1"]
-[ext_resource type="Texture2D" uid="uid://cn6i8vuma1dbj" path="res://assets/npc_bodies/player_front.png" id="6_34636"]
-[ext_resource type="Texture2D" uid="uid://cajr012p6u6xc" path="res://assets/npc_bodies/player_back.png" id="7_m78r2"]
-[ext_resource type="PackedScene" uid="uid://xwxjum5q6wf8" path="res://scenes/npcs/weaboo/weaboo.tscn" id="8_qptpo"]
+[ext_resource type="PackedScene" uid="uid://c2cd42wvhir7u" path="res://scenes/npcs/jim/jim.tscn" id="4_68kyt"]
+[ext_resource type="PackedScene" uid="uid://b8jfsuroroct3" path="res://scenes/plants/rose/rose.tscn" id="5_aorip"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hp3b0"]
 
@@ -35,30 +32,10 @@ transform = Transform3D(0.789673, -0.00587864, 0.613499, -0.613527, -0.00756642,
 [node name="player" parent="." instance=ExtResource("2_xmwbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81094, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(100, 100)
-texture = ExtResource("3_8xhp7")
+[node name="jim" parent="." instance=ExtResource("4_68kyt")]
+transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0.308836, 1.15788, -5.41421)
 
-[node name="testcustomer" parent="." instance=ExtResource("5_toab1")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.946317, -6.66095)
-velocity = Vector3(0, 0, 0)
-front_sprite = ExtResource("6_34636")
-back_sprite = ExtResource("7_m78r2")
-
-[node name="testcustomer2" parent="." instance=ExtResource("5_toab1")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 2.76838, 0.946317, -4.5667)
-velocity = Vector3(0, 0, 0)
-front_sprite = ExtResource("6_34636")
-back_sprite = ExtResource("7_m78r2")
-
-[node name="testcustomer3" parent="." instance=ExtResource("5_toab1")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -1.47192, 0.946317, -4.5667)
-velocity = Vector3(0, 0, 0)
-front_sprite = ExtResource("6_34636")
-back_sprite = ExtResource("7_m78r2")
-
-[node name="weaboo" parent="." instance=ExtResource("8_qptpo")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.946317, -4.68152)
-velocity = Vector3(0, 0, 0)
+[node name="flower" parent="." instance=ExtResource("5_aorip")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90997, 0.87053, 0)
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]
