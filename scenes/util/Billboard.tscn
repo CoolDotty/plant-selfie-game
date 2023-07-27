@@ -86,6 +86,7 @@ _data = {
 }
 
 [node name="Billboard" type="Sprite3D"]
+transform = Transform3D(0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, 0, 0, 1, 0, 0, 0)
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("1_uuewk")

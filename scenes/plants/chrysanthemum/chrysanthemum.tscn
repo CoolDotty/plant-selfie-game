@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://vljinkemj30n"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_n3qfc"]
+[ext_resource type="Texture2D" uid="uid://dirvbokc35drv" path="res://assets/plants/chrysanthemum.png" id="2_bouv5"]
+
+[node name="chrysanthemum" instance=ExtResource("1_n3qfc")]
+full_name = "Chrysanthemum"
+front_sprite = ExtResource("2_bouv5")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_bouv5")

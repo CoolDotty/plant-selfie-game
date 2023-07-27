@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brj5ei7vrlsuk"
-path.s3tc="res://.godot/imported/tigerlily.png-f383b2e8c6ad9cdbf126b5dff3b736fc.s3tc.ctex"
+uid="uid://duqfvgmrt8l86"
+path.s3tc="res://.godot/imported/lucio_front.png-dec134795e7341469f875325651d0927.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/plants/tigerlily.png"
-dest_files=["res://.godot/imported/tigerlily.png-f383b2e8c6ad9cdbf126b5dff3b736fc.s3tc.ctex"]
+source_file="res://assets/npc_bodies/lucio_front.png"
+dest_files=["res://.godot/imported/lucio_front.png-dec134795e7341469f875325651d0927.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxr8mex81kbpo"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_kkcfj"]
+[ext_resource type="Texture2D" uid="uid://f6b70lp8313q" path="res://assets/plants/sunflower.png" id="2_0hkov"]
+
+[node name="sunflower" instance=ExtResource("1_kkcfj")]
+full_name = "Sunflower"
+front_sprite = ExtResource("2_0hkov")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_0hkov")

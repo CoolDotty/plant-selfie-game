@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b61dllp1xtg2l"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_ps7xq"]
+[ext_resource type="Texture2D" uid="uid://cfnudg4uc2g3j" path="res://assets/plants/mushroom.png" id="2_2q4fq"]
+
+[node name="mushroom" instance=ExtResource("1_ps7xq")]
+full_name = "Mushroom"
+front_sprite = ExtResource("2_2q4fq")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_2q4fq")

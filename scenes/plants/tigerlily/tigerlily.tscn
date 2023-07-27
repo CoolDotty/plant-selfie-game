@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj1wjkrdbdoxa"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_f8uie"]
+[ext_resource type="Texture2D" uid="uid://brj5ei7vrlsuk" path="res://assets/plants/tigerlily.png" id="2_3qpyy"]
+
+[node name="tigerlily" instance=ExtResource("1_f8uie")]
+full_name = "Tigerlily"
+front_sprite = ExtResource("2_3qpyy")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_3qpyy")

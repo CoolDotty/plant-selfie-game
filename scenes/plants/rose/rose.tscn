@@ -6,3 +6,6 @@
 [node name="flower" instance=ExtResource("1_ad2oj")]
 full_name = "Rose"
 front_sprite = ExtResource("2_wk3fw")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_wk3fw")

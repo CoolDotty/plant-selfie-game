@@ -9,10 +9,12 @@ height = 16.0
 
 [node name="customer" type="CharacterBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-velocity = Vector3(0, -487.542, 0)
 script = ExtResource("1_8ovur")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mkldu")
 
 [node name="Billboard" parent="." instance=ExtResource("2_y0425")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_position = Vector3(-2.12509, 0, -2.25518)

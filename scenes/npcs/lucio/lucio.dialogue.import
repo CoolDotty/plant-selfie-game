@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://csb1gdywspktx"
+path="res://.godot/imported/lucio.dialogue-cf6186f498ff9ab95fde1aff48a7b221.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/lucio/lucio.dialogue"
+dest_files=["res://.godot/imported/lucio.dialogue-cf6186f498ff9ab95fde1aff48a7b221.tres"]
+
+[params]
+
+defaults=true

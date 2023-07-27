@@ -47,13 +47,18 @@ func _ready() -> void:
 	GallaryAppView.visible = false
 	ShareAppView.visible = false
 
+var is_talking = false
+
 func on_dialogue_start(_line):
 	release_mouse()
 	phone_freeze = true
+	is_talking = true
 
 func on_dialogue_end(_res):
 	capture_mouse()
 	phone_freeze = false
+	is_talking = false
+	last_chat_ended_at = Time.get_ticks_msec()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("exit"): release_mouse()
@@ -63,9 +68,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if mouse_captured: _rotate_camera()
 	if Input.is_action_just_pressed("jump"): jumping = true
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT: capture_mouse()
-	
-	if Input.is_action_just_pressed("interact"):
-		attempt_to_talk()
 
 
 func _on_facebook_pressed(): selected_social = "facebook"
@@ -74,6 +76,8 @@ func _on_instagram_pressed(): selected_social = "instagram"
 func _on_reddit_pressed(): selected_social = "reddit"
 var selected_social = "facebook"
 var current_photo = null
+
+var last_chat_ended_at = 0
 
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
@@ -99,11 +103,17 @@ func _physics_process(delta: float) -> void:
 	var phone_target: float = 0.0 if phone_on else 135.0
 	phone_ui.rotation_degrees = lerp(phone_ui.rotation_degrees, phone_target, 0.1)
 	
-	if CameraAppView.visible:
-		if Input.is_action_just_pressed("take_photo"):
-			current_photo = take_photo()
-			CameraAppView.visible = false
-			GallaryAppView.visible = true
+	if Input.is_action_just_pressed("take_photo"):
+		if phone_on:
+			if CameraAppView.visible:
+				current_photo = take_photo()
+				CameraAppView.visible = false
+				GallaryAppView.visible = true
+		else:
+			if not is_talking and Time.get_ticks_msec() - last_chat_ended_at > 250:
+				var did_talk = attempt_to_talk()
+				if not did_talk:
+					pass # pickup plant
 	
 	if GallaryAppView.visible:
 		GallaryAppView.get_node("PicturePreview").texture = current_photo.photo
@@ -179,6 +189,9 @@ func attempt_to_talk():
 	
 	if is_instance_valid(person_of_interest):
 		person_of_interest.talk(self)
+		return true
+	else:
+		return false
 
 func take_photo():
 	# Retrieve the captured image.

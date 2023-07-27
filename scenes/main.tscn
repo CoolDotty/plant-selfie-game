@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=12 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
 [ext_resource type="PackedScene" uid="uid://dt6jmjihvqh3x" path="res://scenes/player/player.tscn" id="2_xmwbm"]
 [ext_resource type="PackedScene" uid="uid://c2cd42wvhir7u" path="res://scenes/npcs/jim/jim.tscn" id="4_68kyt"]
 [ext_resource type="PackedScene" uid="uid://b8jfsuroroct3" path="res://scenes/plants/rose/rose.tscn" id="5_aorip"]
+[ext_resource type="PackedScene" uid="uid://12m0rxeprn4f" path="res://scenes/npcs/lucio/lucio.tscn" id="6_gfr1f"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hp3b0"]
 
@@ -12,6 +13,13 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpt26"]
 albedo_texture = ExtResource("2_7vasd")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rjb6p"]
+vertices = PackedVector3Array(0, 0.5, -9.5, -9.5, 0.5, 0, -9.5, 0.5, 9.5, 0, 0.5, 9.5, 9.5, 0.5, 0, 9.5, 0.5, -9.5, 0, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, 0, 0, 0.5, -9.5, -9.5, 0.5, -9.5, -9.5, 0.5, 0)
+polygons = [PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(8, 7, 6), PackedInt32Array(11, 10, 9)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j2we1"]
+size = Vector2(20, 20)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_wh5kq")
@@ -37,5 +45,16 @@ transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 
 
 [node name="flower" parent="." instance=ExtResource("5_aorip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90997, 0.87053, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.452481, 0)
+visible = false
+navigation_mesh = SubResource("NavigationMesh_rjb6p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_j2we1")
+
+[node name="customer" parent="." instance=ExtResource("6_gfr1f")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 5.73531, 3.10285)
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]

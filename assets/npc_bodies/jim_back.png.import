@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brj5ei7vrlsuk"
-path.s3tc="res://.godot/imported/tigerlily.png-f383b2e8c6ad9cdbf126b5dff3b736fc.s3tc.ctex"
+uid="uid://r23g4nvbxhly"
+path.s3tc="res://.godot/imported/jim_back.png-fba46f5592fc2893916655d7960b3132.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/plants/tigerlily.png"
-dest_files=["res://.godot/imported/tigerlily.png-f383b2e8c6ad9cdbf126b5dff3b736fc.s3tc.ctex"]
+source_file="res://assets/npc_bodies/jim_back.png"
+dest_files=["res://.godot/imported/jim_back.png-fba46f5592fc2893916655d7960b3132.s3tc.ctex"]
 
 [params]
 

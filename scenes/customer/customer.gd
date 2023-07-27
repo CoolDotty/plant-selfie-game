@@ -11,11 +11,47 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var looking_at: Node3D = null
 
+@onready var navigation_agent = $NavigationAgent3D
+var movement_speed: float = 2.0
+var movement_target_position: Vector3 = Vector3(-3.0, 0.0, 2.0)
+
+func _path_random_pos():
+	const r = 10
+	set_movement_target(position + Vector3(
+		randf_range(-r, r),
+		0,
+		randf_range(-r, r)
+	))
+
+func _ready():
+	velocity = Vector3.ZERO
+	
+	# Make sure to not await during _ready.
+	call_deferred("actor_setup")
+
+func actor_setup():
+	# Wait for the first physics frame so the NavigationServer can sync.
+	await get_tree().physics_frame
+	# Now that the navigation map is no longer empty, set the movement target.
+	_path_random_pos()
+
+func set_movement_target(movement_target: Vector3):
+	navigation_agent.set_target_position(movement_target)
+
+func abort_movement():
+	navigation_agent.set_target_position(position)
+
 func _process(delta):
 	if Engine.is_editor_hint():
 		$Billboard.texture = front_sprite
 		return
-	$Billboard.animation.current_animation = "vibing"
+	if not navigation_agent.is_navigation_finished():
+		$Billboard.animation.current_animation = "walking"
+		$Billboard.animation.speed_scale = 2.0
+	else:
+		$Billboard.animation.current_animation = "vibing"
+		$Billboard.animation.speed_scale = 1.0
+	
 	var z_vector = global_transform.basis.z
 	var relative_pos = get_viewport().get_camera_3d().global_transform.origin - global_transform.origin
 	var dot = z_vector.dot(relative_pos)
@@ -32,27 +68,44 @@ const lose_attention_distance = 4.0
 
 func _physics_process(delta):
 	if Engine.is_editor_hint(): return
-	if is_instance_valid(looking_at):
-		# should we give up attention?
-		if global_position.distance_to(looking_at.global_position) > lose_attention_distance:
-			looking_at = null
-			rotation.y = 0 # DEBUG
-			return
-		# pay attention to player
-		# hack to make the angle -2pi < angle < 2pi
-		var target_angle = lerp_angle(0, looking_at.get_node("Camera").global_rotation.y + PI, 1.0)
-		rotation.y = lerp_angle(rotation.y, target_angle, 0.1)
-	else:
-		# idle stuff wander around
-		pass
 	
 	velocity += Vector3(0, -gravity * delta, 0)
 	if is_on_floor():
 		velocity = Vector3.ZERO
+	
+	if not navigation_agent.is_navigation_finished():
+		# is walking
+		var current_agent_position: Vector3 = global_position
+		var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+		
+		var new_velocity: Vector3 = next_path_position - current_agent_position
+		new_velocity = new_velocity.normalized()
+		new_velocity = new_velocity * movement_speed
+
+		velocity += new_velocity
+		rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z) + PI, 0.1)
+	else:
+		# is idle
+		if is_instance_valid(looking_at):
+			# should we give up attention?
+			if global_position.distance_to(looking_at.global_position) > lose_attention_distance:
+				looking_at = null
+				return
+			# pay attention to player
+			# hack to make the angle -2pi < angle < 2pi
+			var target_angle = lerp_angle(0, looking_at.get_node("Camera").global_rotation.y + PI, 1.0)
+			rotation.y = lerp_angle(rotation.y, target_angle, 0.1)
+		else:
+			# completely idle
+			# chance to move around
+			if randi() % 1000 == 1:
+				_path_random_pos()
+	
 	move_and_slide()
 
 
 func talk(toWhom):
+	abort_movement()
 	assert(dialogue, "No dialogue !!!")
 	looking_at = toWhom
 	DialogueManager.show_example_dialogue_balloon(dialogue)

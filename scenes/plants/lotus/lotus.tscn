@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bny76qkj8w7lp"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_tfem7"]
+[ext_resource type="Texture2D" uid="uid://1v20am4uogx2" path="res://assets/plants/lotus.png" id="2_yk87m"]
+
+[node name="lotus" instance=ExtResource("1_tfem7")]
+full_name = "Lotus"
+front_sprite = ExtResource("2_yk87m")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_yk87m")
