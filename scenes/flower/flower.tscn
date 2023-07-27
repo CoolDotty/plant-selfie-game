@@ -4,9 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://c3hmnfrwj1o33" path="res://scenes/util/Billboard.tscn" id="2_f12da"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_usfma"]
-height = 1.0
+radius = 0.1
+height = 0.6
 
 [node name="flower" type="CharacterBody3D"]
+velocity = Vector3(0, -694.027, 0)
 script = ExtResource("1_hqcv4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

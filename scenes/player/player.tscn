@@ -20,6 +20,9 @@ points = PackedVector3Array(-0.5, -0.25, 0, 0.5, -0.25, 0, 0.5, 0.25, 0, -0.5, 0
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_avdhi")
 
+[node name="hand" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229511, -0.289266)
+
 [node name="CShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ww7dt")
 
@@ -41,6 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="BG" type="MarginContainer" parent="PhoneUI"]
+layout_mode = 0
 offset_left = 426.0
 offset_top = 73.0
 offset_right = 718.0

@@ -79,6 +79,9 @@ var current_photo = null
 
 var last_chat_ended_at = 0
 
+func _process(_delta):
+	$hand.position = Vector3(0, 0.33, -0.33).rotated(Vector3(0, 1, 0), camera.rotation.y)
+
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
 	velocity = _walk(delta) + _gravity(delta) + _jump(delta)
@@ -110,10 +113,9 @@ func _physics_process(delta: float) -> void:
 				CameraAppView.visible = false
 				GallaryAppView.visible = true
 		else:
-			if not is_talking and Time.get_ticks_msec() - last_chat_ended_at > 250:
-				var did_talk = attempt_to_talk()
-				if not did_talk:
-					pass # pickup plant
+			# Hack to not instantly talk again after clicking goodbye chat option
+			if Time.get_ticks_msec() - last_chat_ended_at > 250:
+				attempt_to_interact()
 	
 	if GallaryAppView.visible:
 		GallaryAppView.get_node("PicturePreview").texture = current_photo.photo
@@ -139,6 +141,7 @@ func turn_off_phone():
 	capture_mouse()
 
 func turn_on_phone():
+	drop()
 	phone_on = true
 	CameraAppView.visible = true
 	GallaryAppView.visible = false
@@ -174,24 +177,51 @@ func _notification(what):
 
 
 const max_distance_to_talk = 2.0
-func attempt_to_talk():
-	var bodies_in_photo: Array[Node3D] = $Camera/SnapshotHitbox.get_overlapping_bodies()
-	var person_of_interest
-	for interest in bodies_in_photo:
-		if not (interest is Customer):
-			continue
-		if not is_instance_valid(person_of_interest):
-			if interest.global_position.distance_to(global_position) < max_distance_to_talk:
-				person_of_interest = interest
-		else:
-			if person_of_interest.global_position.distance_to(global_position) > interest.global_position.distance_to(global_position):
-				person_of_interest = interest
+func attempt_to_interact():
+	if $hand.get_child_count() > 0:
+		drop()
 	
-	if is_instance_valid(person_of_interest):
-		person_of_interest.talk(self)
-		return true
-	else:
-		return false
+	var bodies_in_photo: Array[Node3D] = $Camera/SnapshotHitbox.get_overlapping_bodies()
+	var thing_of_interest
+	for interest in bodies_in_photo:
+		if not (interest is Customer or interest is Flower):
+			continue
+		if not is_instance_valid(thing_of_interest):
+			if interest.global_position.distance_to(global_position) < max_distance_to_talk:
+				thing_of_interest = interest
+		else:
+			if thing_of_interest.global_position.distance_to(global_position) > interest.global_position.distance_to(global_position):
+				thing_of_interest = interest
+	
+	if is_instance_valid(thing_of_interest):
+		if thing_of_interest is Customer:
+			if not is_talking and not phone_on:
+				thing_of_interest.talk(self)
+		if thing_of_interest is Flower:
+			if not is_talking and not phone_on:
+				pickup(thing_of_interest)
+
+
+func pickup(thing_of_interest):
+	thing_of_interest.get_parent().remove_child(thing_of_interest)
+	thing_of_interest.position = Vector3.ZERO
+	thing_of_interest.no_collide = true
+	await get_tree().physics_frame
+	$hand.add_child(thing_of_interest)
+
+
+func drop():
+	if $hand.get_child_count() == 0:
+		return
+	var thing_held = $hand.get_child(0)
+	var pos = thing_held.global_position
+	$hand.remove_child(thing_held)
+	thing_held.no_collide = false
+	await get_tree().physics_frame
+	thing_held.position = pos
+	thing_held.velocity = Vector3(0, 3, 0)
+	owner.get_parent().add_child(thing_held)
+
 
 func take_photo():
 	# Retrieve the captured image.

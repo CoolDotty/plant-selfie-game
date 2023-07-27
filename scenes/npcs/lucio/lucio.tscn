@@ -15,4 +15,4 @@ dialogue = ExtResource("4_i4bfa")
 texture = ExtResource("2_rvewo")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(-3.17567, 0, -5.74483)
+target_position = Vector3(-5.77288, 0, -7.86624)

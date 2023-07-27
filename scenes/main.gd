@@ -38,7 +38,7 @@ func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: 
 					# website is correct
 					if equal(site, prog.site):
 						var unlocked_customer = prog.customer.instantiate()
-						unlocked_customer.position.y = 5
+						unlocked_customer.position.y = 1
 						add_child(unlocked_customer)
 						progressions.erase(prog)
 						break
