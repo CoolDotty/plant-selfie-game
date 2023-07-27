@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drr2mcncn2w47"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_2b6w2"]
+[ext_resource type="Texture2D" uid="uid://127udne2g8yu" path="res://assets/plants/Os.png" id="2_celj7"]
+
+[node name="os" instance=ExtResource("1_2b6w2")]
+full_name = "O's Plant"
+front_sprite = ExtResource("2_celj7")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_celj7")

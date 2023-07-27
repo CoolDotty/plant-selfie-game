@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1v20am4uogx2"
-path.s3tc="res://.godot/imported/lotus.png-40368da4c48deb381613d5c4234a3a7a.s3tc.ctex"
+path="res://.godot/imported/lotus.png-40368da4c48deb381613d5c4234a3a7a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://assets/plants/lotus.png"
-dest_files=["res://.godot/imported/lotus.png-40368da4c48deb381613d5c4234a3a7a.s3tc.ctex"]
+dest_files=["res://.godot/imported/lotus.png-40368da4c48deb381613d5c4234a3a7a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

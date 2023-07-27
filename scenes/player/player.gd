@@ -80,7 +80,7 @@ var current_photo = null
 var last_chat_ended_at = 0
 
 func _process(_delta):
-	$hand.position = Vector3(0, 0.33, -0.33).rotated(Vector3(0, 1, 0), camera.rotation.y)
+	$hand.position = Vector3(0, 0.33, -0.66).rotated(Vector3(0, 1, 0), camera.rotation.y)
 
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
@@ -203,6 +203,8 @@ func attempt_to_interact():
 
 
 func pickup(thing_of_interest):
+	if Time.get_ticks_msec() - last_chat_ended_at < 250:
+		return
 	thing_of_interest.get_parent().remove_child(thing_of_interest)
 	thing_of_interest.position = Vector3.ZERO
 	thing_of_interest.no_collide = true
@@ -213,6 +215,7 @@ func pickup(thing_of_interest):
 func drop():
 	if $hand.get_child_count() == 0:
 		return
+	last_chat_ended_at = Time.get_ticks_msec()
 	var thing_held = $hand.get_child(0)
 	var pos = thing_held.global_position
 	$hand.remove_child(thing_held)

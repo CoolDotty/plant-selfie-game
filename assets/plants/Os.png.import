@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwp27qeafsus8"
-path="res://.godot/imported/redditlogo.png-9878489a9ccdbd66c7b6bdf59778700b.ctex"
+uid="uid://127udne2g8yu"
+path="res://.godot/imported/Os.png-9e29aef8b255fb82407dbc99bb4605b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/logos/redditlogo.png"
-dest_files=["res://.godot/imported/redditlogo.png-9878489a9ccdbd66c7b6bdf59778700b.ctex"]
+source_file="res://assets/plants/Os.png"
+dest_files=["res://.godot/imported/Os.png-9e29aef8b255fb82407dbc99bb4605b1.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
