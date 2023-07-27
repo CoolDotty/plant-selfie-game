@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author/>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments/>
+    </contributor>
+    <created>2023-07-27T04:05:28Z</created>
+    <keywords/>
+    <modified>2023-07-27T04:05:28Z</modified>
+    <revision/>
+    <subject/>
+    <title/>
+    <unit meter="0.010000" name="centimeter"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="decalsign-lib" name="decalsignMesh">
+      <mesh>
+        <source id="decalsign-POSITION">
+          <float_array id="decalsign-POSITION-array" count="45">
+-51.090454 26.286093 66.775681
+51.090454 26.286093 66.775681
+-51.090454 70.583054 66.775688
+51.090454 70.583054 66.775688
+0.000000 26.286093 66.775681
+0.000000 70.583054 66.775688
+-51.090454 48.434574 66.775681
+0.000000 48.434574 66.775681
+51.090454 48.434574 66.775681
+-25.545227 26.286093 66.775681
+-25.545227 48.434574 66.775681
+-25.545227 70.583054 66.775688
+25.545227 26.286093 66.775681
+25.545227 48.434574 66.775681
+25.545227 70.583054 66.775688
+</float_array>
+          <technique_common>
+            <accessor source="#decalsign-POSITION-array" count="15" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="decalsign-Normal0">
+          <float_array id="decalsign-Normal0-array" count="45">
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 -0.000000 1.000000
+0.000000 -0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#decalsign-Normal0-array" count="15" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="decalsign-UV0">
+          <float_array id="decalsign-UV0-array" count="30">
+0.000048 0.000000
+1.000000 0.000112
+0.000000 0.433494
+0.999952 0.433606
+0.500024 0.000056
+0.499976 0.433550
+0.000024 0.216747
+0.500000 0.216803
+0.999976 0.216859
+0.250036 0.000028
+0.250012 0.216775
+0.249988 0.433522
+0.750012 0.000084
+0.749988 0.216831
+0.749964 0.433578
+</float_array>
+          <technique_common>
+            <accessor source="#decalsign-UV0-array" count="15" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="decalsign-VERTEX">
+          <input semantic="POSITION" source="#decalsign-POSITION"/>
+          <input semantic="NORMAL" source="#decalsign-Normal0"/>
+        </vertices>
+        <triangles count="16" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#decalsign-VERTEX"/>
+          <input semantic="TEXCOORD" offset="1" set="0" source="#decalsign-UV0"/>
+          <p> 11 11 2 2 6 6 11 11 6 6 10 10 14 14 5 5 13 13 5 5 7 7 13 13 10 10 6 6 0 0 10 10 0 0 9 9 7 7 12 12 13 13 12 12 7 7 4 4 7 7 10 10 4 4 10 10 9 9 4 4 5 5 11 11 7 7 11 11 10 10 7 7 13 13 12 12 8 8 8 8 12 12 1 1 3 3 14 14 8 8 14 14 13 13 8 8</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="signdecal" name="signdecal">
+      <node name="decalsign" id="decalsign" sid="decalsign">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#decalsign-lib">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="lambert1" target="#lambert1"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>24.000000</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0.000000</start_time>
+          <end_time>41.666667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#signdecal"/>
+  </scene>
+</COLLADA>

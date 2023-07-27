@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author/>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments/>
+    </contributor>
+    <created>2023-07-27T03:38:12Z</created>
+    <keywords/>
+    <modified>2023-07-27T03:38:12Z</modified>
+    <revision/>
+    <subject/>
+    <title/>
+    <unit meter="0.010000" name="centimeter"/>
+    <up_axis>Y_UP</up_axis>
+  </asset>
+  <library_materials>
+    <material id="lambert1" name="lambert1">
+      <instance_effect url="#lambert1-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="lambert1-fx" name="lambert1">
+      <profile_COMMON>
+        <technique sid="standard">
+          <lambert>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.400000  0.400000 0.400000 1.000000</color>
+            </diffuse>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="backwall-lib" name="backwallMesh">
+      <mesh>
+        <source id="backwall-POSITION">
+          <float_array id="backwall-POSITION-array" count="36">
+-504.925995 0.000000 -535.847778
+-504.925995 0.000000 -504.925995
+-504.925995 276.449677 -535.847778
+-504.925995 276.449677 -504.925995
+504.925995 276.449677 -535.847778
+504.925995 276.449677 -504.925995
+504.925995 0.000000 -535.847778
+504.925995 0.000000 -504.925995
+0.000000 339.332275 -535.847778
+0.000000 0.000000 -535.847778
+0.000000 0.000000 -504.925995
+0.000000 339.332275 -504.925995
+</float_array>
+          <technique_common>
+            <accessor source="#backwall-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="backwall-Normal0">
+          <float_array id="backwall-Normal0-array" count="126">
+-0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+-0.123584 0.992334 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#backwall-Normal0-array" count="42" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="backwall-UV0">
+          <float_array id="backwall-UV0-array" count="40">
+0.508921 0.780381
+0.508921 0.982712
+0.496530 0.982712
+0.496530 0.780381
+0.508921 0.578051
+0.496530 0.578051
+0.496530 0.467273
+0.508921 0.467273
+0.573418 0.561307
+0.573418 0.450864
+0.775138 0.450864
+0.775138 0.586429
+0.983468 0.303322
+0.983468 0.413765
+0.781748 0.438887
+0.781748 0.303322
+0.580028 0.413765
+0.580028 0.303322
+0.976858 0.450864
+0.976858 0.561307
+</float_array>
+          <technique_common>
+            <accessor source="#backwall-UV0-array" count="20" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="backwall-VERTEX">
+          <input semantic="POSITION" source="#backwall-POSITION"/>
+        </vertices>
+        <triangles count="14" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#backwall-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#backwall-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#backwall-UV0"/>
+          <p> 3 0 2 11 1 3 8 2 0 3 3 2 8 4 0 2 5 1 7 6 6 4 7 4 5 8 5 4 9 4 7 10 6 6 11 7 1 12 9 10 13 10 3 14 8 11 15 11 3 16 8 10 17 10 9 18 15 2 19 13 8 20 14 2 21 13 9 22 15 0 23 12 9 24 15 4 25 16 6 26 17 4 27 16 9 28 15 8 29 14 5 30 19 10 31 10 7 32 18 10 33 10 5 34 19 11 35 11 4 36 4 11 37 3 5 38 5 11 39 3 4 40 4 8 41 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="backwall_col-lib" name="backwall_colMesh">
+      <mesh>
+        <source id="backwall_col-POSITION">
+          <float_array id="backwall_col-POSITION-array" count="36">
+-504.925995 0.000000 -535.847778
+-504.925995 0.000000 -504.925995
+-504.925995 276.449677 -535.847778
+-504.925995 276.449677 -504.925995
+504.925995 276.449677 -535.847778
+504.925995 276.449677 -504.925995
+504.925995 0.000000 -535.847778
+504.925995 0.000000 -504.925995
+0.000000 339.332275 -535.847778
+0.000000 0.000000 -535.847778
+0.000000 0.000000 -504.925995
+0.000000 339.332275 -504.925995
+</float_array>
+          <technique_common>
+            <accessor source="#backwall_col-POSITION-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="backwall_col-Normal0">
+          <float_array id="backwall_col-Normal0-array" count="144">
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+-0.123584 0.992334 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+0.123584 0.992334 0.000000
+0.000000 1.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#backwall_col-Normal0-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="backwall_col-UV0">
+          <float_array id="backwall_col-UV0-array" count="36">
+0.375000 0.000000
+0.625000 0.000000
+0.625000 0.250000
+0.375000 0.250000
+0.375000 0.375000
+0.625000 0.375000
+0.375000 0.500000
+0.625000 0.500000
+0.625000 0.750000
+0.375000 0.750000
+0.750000 0.000000
+0.750000 0.250000
+0.250000 0.250000
+0.250000 0.000000
+0.125000 0.250000
+0.125000 0.000000
+0.875000 0.000000
+0.875000 0.250000
+</float_array>
+          <technique_common>
+            <accessor source="#backwall_col-UV0-array" count="18" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="backwall_col-VERTEX">
+          <input semantic="POSITION" source="#backwall_col-POSITION"/>
+        </vertices>
+        <triangles count="16" material="lambert1">
+          <input semantic="VERTEX" offset="0" source="#backwall_col-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#backwall_col-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#backwall_col-UV0"/>
+          <p> 3 0 2 0 1 0 1 2 1 0 3 0 3 4 2 2 5 3 3 6 2 11 7 5 8 8 4 3 9 2 8 10 4 2 11 3 7 12 8 4 13 6 5 14 7 4 15 6 7 16 8 6 17 9 1 18 1 10 19 10 3 20 2 11 21 11 3 22 2 10 23 10 9 24 13 2 25 3 8 26 12 2 27 3 9 28 13 0 29 0 9 30 13 4 31 14 6 32 15 4 33 14 9 34 13 8 35 12 5 36 17 10 37 10 7 38 16 10 39 10 5 40 17 11 41 11 4 42 6 11 43 5 5 44 7 11 45 5 4 46 6 8 47 4</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="backwall_col" name="backwall_col">
+      <node name="walls_grp" id="walls_grp" sid="walls_grp">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
+        <node name="backwall" id="backwall" sid="backwall">
+          <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+          <instance_geometry url="#backwall-lib">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="lambert1" target="#lambert1"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+          <extra>
+            <technique profile="FCOLLADA">
+              <visibility>1.000000</visibility>
+            </technique>
+          </extra>
+          <node name="backwall_col" id="backwall_col" sid="backwall_col">
+            <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+            <instance_geometry url="#backwall_col-lib">
+              <bind_material>
+                <technique_common>
+                  <instance_material symbol="lambert1" target="#lambert1"/>
+                </technique_common>
+              </bind_material>
+            </instance_geometry>
+            <extra>
+              <technique profile="FCOLLADA">
+                <visibility>1.000000</visibility>
+              </technique>
+            </extra>
+          </node>
+        </node>
+      </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>24.000000</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0.000000</start_time>
+          <end_time>41.666667</end_time>
+        </technique>
+      </extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#backwall_col"/>
+  </scene>
+</COLLADA>

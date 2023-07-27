@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=28 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
@@ -6,6 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://c2cd42wvhir7u" path="res://scenes/npcs/jim/jim.tscn" id="4_68kyt"]
 [ext_resource type="PackedScene" uid="uid://b8jfsuroroct3" path="res://scenes/plants/rose/rose.tscn" id="5_aorip"]
 [ext_resource type="PackedScene" uid="uid://12m0rxeprn4f" path="res://scenes/npcs/lucio/lucio.tscn" id="6_gfr1f"]
+[ext_resource type="PackedScene" uid="uid://wcoer4epqv45" path="res://assets/environment/frontwall.dae" id="7_us01g"]
+[ext_resource type="PackedScene" uid="uid://c01yww5mtiknm" path="res://assets/environment/lf_wall.dae" id="9_xcf2o"]
+[ext_resource type="PackedScene" uid="uid://cuuctft7mn5bh" path="res://assets/environment/lf_wall_col.dae" id="10_rd8qn"]
+[ext_resource type="PackedScene" uid="uid://dgf7noibfskmc" path="res://assets/environment/roof.dae" id="11_nlarb"]
+[ext_resource type="PackedScene" uid="uid://crf4ecb7fc62r" path="res://assets/environment/roof_col.dae" id="12_a6q3y"]
+[ext_resource type="PackedScene" uid="uid://chy8s6jxj51vn" path="res://assets/environment/rt_wall.dae" id="13_tidbd"]
+[ext_resource type="PackedScene" uid="uid://qqit55eubihb" path="res://assets/environment/rt_wall_col.dae" id="14_te3x6"]
+[ext_resource type="PackedScene" uid="uid://c764enfmqrsv3" path="res://assets/environment/backwall.dae" id="15_aw3ci"]
+[ext_resource type="PackedScene" uid="uid://bqrnk2hs8i5va" path="res://assets/environment/awning.dae" id="15_beew1"]
+[ext_resource type="PackedScene" uid="uid://mbx4votjms84" path="res://assets/environment/frontDoor.dae" id="16_tcci6"]
+[ext_resource type="PackedScene" uid="uid://cmssin83soktv" path="res://assets/environment/backwall_col.dae" id="16_u64d7"]
+[ext_resource type="PackedScene" uid="uid://dpk3co0eqw55y" path="res://assets/environment/register.dae" id="18_4n6rn"]
+[ext_resource type="PackedScene" uid="uid://dft4oqc1pn5wp" path="res://assets/environment/displaytable.dae" id="19_1rn3w"]
+[ext_resource type="PackedScene" uid="uid://drhxyd2w5yyw8" path="res://assets/environment/signdecal.dae" id="19_64cli"]
+[ext_resource type="PackedScene" uid="uid://dprmry3d6weab" path="res://assets/environment/woodenplanksign.dae" id="20_d736i"]
+[ext_resource type="PackedScene" uid="uid://bi342pofdax0x" path="res://assets/environment/displaytable_col.dae" id="20_ehl4j"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hp3b0"]
 
@@ -44,7 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81094, 0)
 transform = Transform3D(-0.1, 0, -8.74228e-09, 0, 0.1, 0, 8.74228e-09, 0, -0.1, 0.308836, 1.15788, -5.41421)
 
 [node name="flower" parent="." instance=ExtResource("5_aorip")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90997, 0.87053, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43071, 1.20702, 0.273611)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.452481, 0)
@@ -56,5 +72,73 @@ mesh = SubResource("PlaneMesh_j2we1")
 
 [node name="customer" parent="." instance=ExtResource("6_gfr1f")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 5.73531, 3.10285)
+
+[node name="Building" type="Node3D" parent="."]
+
+[node name="lf_wall" parent="Building" instance=ExtResource("9_xcf2o")]
+
+[node name="lf_wall_col" parent="Building/lf_wall" instance=ExtResource("10_rd8qn")]
+visible = false
+
+[node name="roof" parent="Building" instance=ExtResource("11_nlarb")]
+
+[node name="roof_col" parent="Building/roof" instance=ExtResource("12_a6q3y")]
+visible = false
+
+[node name="rt_wall" parent="Building" instance=ExtResource("13_tidbd")]
+
+[node name="rt_wall_col" parent="Building/rt_wall" instance=ExtResource("14_te3x6")]
+visible = false
+
+[node name="backwall" parent="Building" instance=ExtResource("15_aw3ci")]
+
+[node name="backwall_col" parent="Building/backwall" instance=ExtResource("16_u64d7")]
+visible = false
+
+[node name="awning" parent="Building" instance=ExtResource("15_beew1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0416727, 0.0324072, 0.046371)
+
+[node name="frontDoor" parent="Building" instance=ExtResource("16_tcci6")]
+
+[node name="frontwall" parent="Building" instance=ExtResource("7_us01g")]
+
+[node name="register" parent="Building" instance=ExtResource("18_4n6rn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.39094)
+
+[node name="signdecal" parent="Building" instance=ExtResource("19_64cli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.37534)
+
+[node name="woodenplanksign" parent="Building" instance=ExtResource("20_d736i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.383)
+
+[node name="displaytable" parent="Building" instance=ExtResource("19_1rn3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.38756)
+
+[node name="displaytable_col" parent="Building/displaytable" instance=ExtResource("20_ehl4j")]
+visible = false
+
+[node name="displaytable2" parent="Building" instance=ExtResource("19_1rn3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88504, 0, -0.172785)
+
+[node name="displaytable_col" parent="Building/displaytable2" instance=ExtResource("20_ehl4j")]
+visible = false
+
+[node name="displaytable3" parent="Building" instance=ExtResource("19_1rn3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.54811, 0, 2.60146)
+
+[node name="displaytable_col" parent="Building/displaytable3" instance=ExtResource("20_ehl4j")]
+visible = false
+
+[node name="displaytable4" parent="Building" instance=ExtResource("19_1rn3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39066, 0, 2.60146)
+
+[node name="displaytable_col" parent="Building/displaytable4" instance=ExtResource("20_ehl4j")]
+visible = false
+
+[node name="displaytable5" parent="Building" instance=ExtResource("19_1rn3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39066, 0, 0.162839)
+
+[node name="displaytable_col" parent="Building/displaytable5" instance=ExtResource("20_ehl4j")]
+visible = false
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]
