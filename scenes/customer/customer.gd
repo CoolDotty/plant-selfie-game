@@ -8,12 +8,17 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var front_sprite = preload("res://icon.svg")
 @export var back_sprite = preload("res://icon.svg")
 @export var dialogue: DialogueResource
+@export var purchase_dialogue: DialogueResource
 
 var looking_at: Node3D = null
 
 @onready var navigation_agent = $NavigationAgent3D
 var movement_speed: float = 2.0
 var movement_target_position: Vector3 = Vector3(-3.0, 0.0, 2.0)
+
+var my_photo: Texture
+
+var exiting = false
 
 func _path_random_pos():
 	const r = 10
@@ -85,6 +90,12 @@ func _physics_process(delta):
 		velocity += new_velocity
 		rotation.y = lerp_angle(rotation.y, atan2(velocity.x, velocity.z) + PI, 0.1)
 	else:
+		if exiting:
+			# reach store exit
+			(func():
+				get_parent().remove_child(self)
+				Global.final_customers.push_back(self)
+			).call_deferred()
 		# is idle
 		if is_instance_valid(looking_at):
 			# should we give up attention?
@@ -103,12 +114,25 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
+func sell(plant: Node3D):
+	if exiting: return
+	$hand.add_child(plant)
+	# play cha-ching
+	# Leave store
+	set_movement_target(get_parent().get_node("StoreExit").position)
+	exiting = true
 
 func talk(toWhom):
+	if exiting: return
 	abort_movement()
-	assert(dialogue, "No dialogue !!!")
 	looking_at = toWhom
-	DialogueManager.show_example_dialogue_balloon(dialogue)
+	if Global.mode == "market":
+		DialogueManager.show_example_dialogue_balloon(dialogue)
+	if Global.mode == "sell":
+		if purchase_dialogue:
+			DialogueManager.show_example_dialogue_balloon(purchase_dialogue)
+		else:
+			DialogueManager.show_example_dialogue_balloon(dialogue)
 	
 	var target_angle = lerp_angle(0, looking_at.get_node("Camera").global_rotation.y + PI, 1.0)
 	if abs(rotation.y - target_angle) > PI / 2:

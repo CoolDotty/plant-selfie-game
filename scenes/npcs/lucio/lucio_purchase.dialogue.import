@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bnl2v2t6yevum"
+path="res://.godot/imported/lucio_purchase.dialogue-03c5fbb23e90d3a9a6d2d9cc253d9267.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/lucio/lucio_purchase.dialogue"
+dest_files=["res://.godot/imported/lucio_purchase.dialogue-03c5fbb23e90d3a9a6d2d9cc253d9267.tres"]
+
+[params]
+
+defaults=true

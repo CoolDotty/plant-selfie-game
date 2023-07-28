@@ -75,7 +75,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PhoneUI/CameraAppView/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(292, 515)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="phone_camera" type="Camera3D" parent="PhoneUI/CameraAppView/SubViewportContainer/SubViewport"]

@@ -10,6 +10,7 @@ height = 16.0
 [node name="customer" type="CharacterBody3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 script = ExtResource("1_8ovur")
+love_it_dialogue = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mkldu")
@@ -17,8 +18,5 @@ shape = SubResource("CapsuleShape3D_mkldu")
 [node name="Billboard" parent="." instance=ExtResource("2_y0425")]
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_position = Vector3(5.10823, 0, -3.71899)
+target_position = Vector3(2.1599, 0, -1.17131)
 avoidance_enabled = true
-
-[node name="hand" type="Node3D" parent="."]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2.5, -1.5)

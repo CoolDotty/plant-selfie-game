@@ -1,0 +1,9 @@
+Mr Yeast: [[Hi]], I love your store!
+- What's up?
+	Mr Yeast: Not much!
+	- Thanks => END
+- Thanks! bye!
+	Mr Yeast: Later!
+	=> END
+
+=> END

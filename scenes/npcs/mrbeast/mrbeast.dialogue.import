@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://cj2s18iqx7g0f"
+path="res://.godot/imported/mrbeast.dialogue-d1dcac253d8404f874a1375562492974.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/mrbeast/mrbeast.dialogue"
+dest_files=["res://.godot/imported/mrbeast.dialogue-d1dcac253d8404f874a1375562492974.tres"]
+
+[params]
+
+defaults=true

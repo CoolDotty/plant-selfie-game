@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://de8altr4nelb1"
+path="res://.godot/imported/jim_purchase.dialogue-11d4c151cf8f983b4fb5886babf7ef7b.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/jim/jim_purchase.dialogue"
+dest_files=["res://.godot/imported/jim_purchase.dialogue-11d4c151cf8f983b4fb5886babf7ef7b.tres"]
+
+[params]
+
+defaults=true

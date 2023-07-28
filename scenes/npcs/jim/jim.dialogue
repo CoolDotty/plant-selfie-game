@@ -1,13 +1,7 @@
-~ this_is_a_node_title
-
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => this_is_a_node_title
-- End the conversation => END
-Nathan: For more information see the online documentation.
+Jim: Hello! Your shop looks great, but it's a little sparse for customers.
+Jim: You should try posting photos of cool **plants** and **people** on your social media.
+Jim: You can take and post photos using your smart phone with right click!
+Jim: Try posting a picture of me and I'll leave a good testimony on Facebook.
+- Thanks for the advice!
 
 => END

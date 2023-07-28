@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cqvlps4uvrmgc"]
+
+[ext_resource type="Shader" path="res://util/shaders/simpletoon.gdshader" id="1_bfdif"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_bfdif")
+shader_parameter/base_color = Color(1, 1, 1, 1)
+shader_parameter/top_color = Color(0.95, 0.62, 0, 1)
+shader_parameter/right_color = Color(0.54, 0.11, 0.94, 1)
+shader_parameter/front_color = Color(0.86, 0.18, 0.28, 1)
+shader_parameter/intensity = 0.4

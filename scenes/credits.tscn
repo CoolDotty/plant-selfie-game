@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq12lwf0ncp3d"]
+
+[ext_resource type="Script" path="res://scenes/credits.gd" id="1_eskq7"]
+[ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_ehch7"]
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_eskq7")
+
+[node name="Black" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-54, -339)
+scale = Vector2(10, 10)
+texture = ExtResource("2_ehch7")
+centered = false
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 433.0
+offset_top = 120.0
+offset_right = 441.0
+offset_bottom = 128.0
+text = "The End!"

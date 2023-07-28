@@ -10,7 +10,8 @@ func p(poi, foi, site, customer):
 	}
 
 var progressions = [
-	p("jim", "rose", "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn"))
+	p("jim", null, "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
+	p(null, "sunflower", "deviantart", preload("res://scenes/npcs/lucio/lucio.tscn"))
 ]
 
 
@@ -20,10 +21,26 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Global.mode == "market":
+		if progressions.size() == 0:
+			Global.mode = "sell"
+	
+	if Global.mode == "sell":
+		if not get_children().any(func(c): return c is Customer):
+			Global.mode = "end"
+			end_game()
 
 func equal(a: String, b: String):
 	return a.nocasecmp_to(b) == 0
+
+var fadeout = preload("res://scenes/util/fadeout.tscn")
+var credits = preload("res://scenes/credits.tscn")
+
+func end_game():
+	add_child(fadeout.instantiate())
+	await get_tree().create_timer(5).timeout
+	get_tree().change_scene_to_packed(credits)
+	
 
 func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: String, everything):
 	if not is_instance_valid(poi) and not is_instance_valid(foi):
@@ -38,7 +55,9 @@ func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: 
 					# website is correct
 					if equal(site, prog.site):
 						var unlocked_customer = prog.customer.instantiate()
-						unlocked_customer.position.y = 1
+						unlocked_customer.my_photo = texture
+						# TODO
+						unlocked_customer.position = $StoreExit.position
 						add_child(unlocked_customer)
 						progressions.erase(prog)
 						break

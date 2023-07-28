@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://dsml4cc0pcl2b"
+path="res://.godot/imported/weaboo_purchase.dialogue-6b67f27e8e3c019bd011c4dfcb58b0f8.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/weaboo/weaboo_purchase.dialogue"
+dest_files=["res://.godot/imported/weaboo_purchase.dialogue-6b67f27e8e3c019bd011c4dfcb58b0f8.tres"]
+
+[params]
+
+defaults=true

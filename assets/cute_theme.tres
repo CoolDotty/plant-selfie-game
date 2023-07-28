@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dny8ghlfi3wav"]
+
+[ext_resource type="FontFile" uid="uid://hvm8uv8ahv0c" path="res://assets/fonts/Hey Comic.ttf" id="1_bfeah"]
+
+[resource]
+default_font = ExtResource("1_bfeah")

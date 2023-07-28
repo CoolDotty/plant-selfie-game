@@ -13,8 +13,12 @@ func _process(_delta):
 	if Engine.is_editor_hint(): return
 	$Billboard.animation.current_animation = "vibing"
 	
-	var target_rot = get_viewport().get_camera_3d().global_rotation.y
-	rotation.y = target_rot
+	if get_parent().get_parent() is Customer:
+		rotation.y = 0
+	else:
+		if not is_instance_valid(get_viewport().get_camera_3d()): return
+		var target_rot = get_viewport().get_camera_3d().global_rotation.y
+		rotation.y = target_rot
 
 func _physics_process(delta):
 	$CollisionShape3D.disabled = no_collide

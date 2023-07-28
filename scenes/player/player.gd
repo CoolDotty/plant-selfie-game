@@ -178,8 +178,6 @@ func _notification(what):
 
 const max_distance_to_talk = 2.0
 func attempt_to_interact():
-	if $hand.get_child_count() > 0:
-		drop()
 	
 	var bodies_in_photo: Array[Node3D] = $Camera/SnapshotHitbox.get_overlapping_bodies()
 	var thing_of_interest
@@ -196,10 +194,24 @@ func attempt_to_interact():
 	if is_instance_valid(thing_of_interest):
 		if thing_of_interest is Customer:
 			if not is_talking and not phone_on:
-				thing_of_interest.talk(self)
+				if Global.mode == "market":
+					if $hand.get_child_count() == 0:
+						thing_of_interest.talk(self)
+					else:
+						drop()
+				if Global.mode == "sell":
+					if $hand.get_child_count() == 0:
+						thing_of_interest.talk(self)
+					else:
+						sell(thing_of_interest)
 		if thing_of_interest is Flower:
 			if not is_talking and not phone_on:
-				pickup(thing_of_interest)
+				if $hand.get_child_count() > 0:
+					drop()
+				else:
+					pickup(thing_of_interest)
+	else:
+		drop()
 
 
 func pickup(thing_of_interest):
@@ -225,6 +237,14 @@ func drop():
 	thing_held.velocity = Vector3(0, 3, 0)
 	owner.get_parent().add_child(thing_held)
 
+func sell(to: Customer):
+	if $hand.get_child_count() == 0:
+		return
+	last_chat_ended_at = Time.get_ticks_msec()
+	var thing_held = $hand.get_child(0)
+	$hand.remove_child(thing_held)
+	await get_tree().physics_frame
+	to.sell(thing_held)
 
 func take_photo():
 	# Retrieve the captured image.
