@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvhyhpr06uued"]
+
+[ext_resource type="Script" path="res://scenes/slide.gd" id="1_qpc8v"]
+[ext_resource type="Texture2D" uid="uid://b3fkduhf0b0xi" path="res://assets/picture_frame.png" id="2_je200"]
+[ext_resource type="Theme" uid="uid://dny8ghlfi3wav" path="res://assets/cute_theme.tres" id="3_6fd3r"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_36ki2"]
+size = Vector2(292, 515)
+
+[node name="slide" type="Node2D"]
+position = Vector2(1393, 1046)
+rotation = -4.71239
+script = ExtResource("1_qpc8v")
+
+[node name="picture" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_36ki2")
+
+[node name="PictureFrame" type="Sprite2D" parent="picture"]
+z_index = -1
+position = Vector2(0, 20)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("2_je200")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="picture"]
+anchors_preset = -1
+anchor_top = 0.188
+anchor_bottom = 0.188
+offset_left = -142.0
+offset_top = 166.18
+offset_right = 143.0
+offset_bottom = 206.18
+theme = ExtResource("3_6fd3r")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Test test estet test"
+horizontal_alignment = 1
+vertical_alignment = 1

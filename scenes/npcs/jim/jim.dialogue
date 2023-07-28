@@ -1,7 +1,8 @@
-Jim: Hello! Your shop looks great, but it's a little sparse for customers.
-Jim: You should try posting photos of cool **plants** and **people** on your social media.
-Jim: You can take and post photos using your smart phone with right click!
-Jim: Try posting a picture of me and I'll leave a good testimony on Facebook.
-- Thanks for the advice!
+Jim: This place looks lovey!
+- How are you?
+	Jim: I'm great, thank you for asking!
+	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
+	- For sure! => END
+- Thank you! => END
 
 => END

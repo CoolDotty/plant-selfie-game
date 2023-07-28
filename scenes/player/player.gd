@@ -33,6 +33,8 @@ var jump_vel: Vector3 # Jumping velocity
 
 @export var phone_on := false
 
+@export var tutorial_call: DialogueResource
+
 @onready var CameraAppView = $PhoneUI/CameraAppView
 @onready var GallaryAppView = $PhoneUI/GallaryAppView
 @onready var ShareAppView = $PhoneUI/ShareAppView
@@ -46,12 +48,16 @@ func _ready() -> void:
 	CameraAppView.visible = false
 	GallaryAppView.visible = false
 	ShareAppView.visible = false
+	
+	await get_tree().create_timer(3).timeout
+	do_phonecall(tutorial_call)
 
 var is_talking = false
 
 func on_dialogue_start(_line):
 	release_mouse()
-	phone_freeze = true
+	if not phonecall:
+		phone_freeze = true
 	is_talking = true
 
 func on_dialogue_end(_res):
@@ -79,8 +85,14 @@ var current_photo = null
 
 var last_chat_ended_at = 0
 
-func _process(_delta):
+func _process(delta):
 	$hand.position = Vector3(0, 0.33, -0.66).rotated(Vector3(0, 1, 0), camera.rotation.y)
+	
+	if phonecall:
+		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2.ONE, delta * 3)
+		$PhoneUI/PhonecallUi/calltime.text = Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - call_start)
+	else:
+		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2.ZERO, delta * 3)
 
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
@@ -97,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			turn_on_phone()
 	
-	if phone_freeze:
+	if phone_freeze or not $PhoneUI.visible:
 		phone_on = false
 		CameraAppView.visible = false
 		GallaryAppView.visible = false
@@ -109,6 +121,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("take_photo"):
 		if phone_on:
 			if CameraAppView.visible:
+				if phonecall:
+					return
+				if Time.get_ticks_msec() - last_chat_ended_at < 250:
+					return
 				current_photo = take_photo()
 				CameraAppView.visible = false
 				GallaryAppView.visible = true
@@ -287,6 +303,18 @@ func take_photo():
 		"foi": flower_of_interest,
 		"interests": interests_in_photo
 	}
+
+var phonecall = false
+var call_start = 0
+
+func do_phonecall(res: DialogueResource):
+	# ring ring
+	await get_tree().create_timer(3).timeout
+	call_start = Time.get_unix_time_from_system()
+	turn_on_phone()
+	phonecall = true
+	DialogueManager.dialogue_ended.connect(func(_a): phonecall = false, CONNECT_ONE_SHOT)
+	DialogueManager.show_example_dialogue_balloon(res)
 
 
 func capture_mouse() -> void:

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://63qewdxqrr5m"]
+
+[ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="1_0dacw"]
+
+[sub_resource type="Shader" id="Shader_k0ma6"]
+code = "shader_type canvas_item;
+
+uniform vec2 direction = vec2(.0, .5);
+
+uniform float offset : hint_range(0., 1.);
+
+uniform float fade : hint_range(0., 1.);
+
+uniform float strip = 4.;
+
+void fragment() {
+	vec2 norm = normalize(direction);
+	vec2 pixels = SCREEN_UV / SCREEN_PIXEL_SIZE;
+	vec2 pdir = vec2(norm.y, -norm.x);
+	vec2 corrected_uv = UV + ((float(int(dot(pdir, pixels) / strip) & 0x1) * 2.) - 1.) * offset * pdir;
+	vec4 color = texture(TEXTURE, corrected_uv) * vec4(0, 0, 0, 1);
+	color.a *= clamp(1. - offset/fade, 0., 1.);
+	COLOR = color;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gonij"]
+shader = SubResource("Shader_k0ma6")
+shader_parameter/direction = Vector2(10, 10)
+shader_parameter/offset = 0.0
+shader_parameter/fade = 1.0
+shader_parameter/strip = 10.0
+
+[sub_resource type="GDScript" id="GDScript_tirck"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _physics_process(delta):
+	var t = Time.get_unix_time_from_system()
+	material.set_shader_parameter(\"direction\", Vector2(10, 10))
+	material.set_shader_parameter(\"offset\", min(material.get_shader_parameter(\"offset\") + delta * 0.25, 1))
+"
+
+[node name="fadeout" type="Sprite2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_gonij")
+position = Vector2(-71, -311)
+scale = Vector2(10, 10)
+texture = ExtResource("1_0dacw")
+centered = false
+script = SubResource("GDScript_tirck")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dt6jmjihvqh3x"]
+[gd_scene load_steps=14 format=3 uid="uid://dt6jmjihvqh3x"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_avdhi"]
 [ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_0g55o"]
+[ext_resource type="Resource" uid="uid://ey7m2udu5o24" path="res://scenes/player/boss_tutorial_call.dialogue" id="2_5kdj4"]
 [ext_resource type="Texture2D" uid="uid://bbr0wdm7mgkuy" path="res://assets/phone_overlay.png" id="2_thmkd"]
 [ext_resource type="Texture2D" uid="uid://be84k8o7nts3g" path="res://assets/circle.png" id="2_yhcll"]
 [ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="4_nmboj"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dhxi8n2lagu7b" path="res://assets/logos/deviantartlogo.png" id="6_2txdh"]
 [ext_resource type="Texture2D" uid="uid://dx2nloqav0cwo" path="res://assets/logos/instagramlogo.png" id="7_kq776"]
 [ext_resource type="Texture2D" uid="uid://dwp27qeafsus8" path="res://assets/logos/redditlogo.png" id="8_fjxbx"]
+[ext_resource type="Texture2D" uid="uid://b33udev2hvy8w" path="res://assets/phonecall_ui.png" id="9_g1qsx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww7dt"]
 radius = 0.3
@@ -19,6 +21,7 @@ points = PackedVector3Array(-0.5, -0.25, 0, 0.5, -0.25, 0, 0.5, 0.25, 0, -0.5, 0
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_avdhi")
+tutorial_call = ExtResource("2_5kdj4")
 
 [node name="hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229511, -0.289266)
@@ -75,7 +78,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PhoneUI/CameraAppView/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(292, 515)
 render_target_update_mode = 0
 
 [node name="phone_camera" type="Camera3D" parent="PhoneUI/CameraAppView/SubViewportContainer/SubViewport"]
@@ -222,6 +225,19 @@ scale = Vector2(0.35, 0.35)
 text = "Post!"
 icon = ExtResource("4_nmboj")
 expand_icon = true
+
+[node name="PhonecallUi" type="Sprite2D" parent="PhoneUI"]
+position = Vector2(572, 150)
+texture = ExtResource("9_g1qsx")
+
+[node name="calltime" type="Label" parent="PhoneUI/PhonecallUi"]
+offset_left = -117.0
+offset_top = 17.0
+offset_right = -13.0
+offset_bottom = 47.0
+text = "12:23"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PhoneOverlay" type="Sprite2D" parent="PhoneUI"]
 position = Vector2(684, 374)

@@ -10,6 +10,7 @@ func p(poi, foi, site, customer):
 	}
 
 var progressions = [
+	p(null, null, "instagram", preload("res://scenes/npcs/jim/jim.tscn")),
 	p("jim", null, "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
 	p(null, "sunflower", "deviantart", preload("res://scenes/npcs/lucio/lucio.tscn"))
 ]
@@ -48,16 +49,23 @@ func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: 
 		pass
 	else:
 		for prog in progressions:
+			if not prog.poi and not prog.foi:
+				# hack to allow tutorial photo
+				init_customer(prog, texture)
+				break
 			# progression does not need a person or person matches progression
 			if not prog.poi or (prog.poi and is_instance_valid(poi) and equal(poi.full_name, prog.poi)):
 				# progression does not need a flower or flower matches progression
 				if not prog.foi or (prog.foi and is_instance_valid(foi) and equal(foi.full_name, prog.foi)):
 					# website is correct
 					if equal(site, prog.site):
-						var unlocked_customer = prog.customer.instantiate()
-						unlocked_customer.my_photo = texture
-						# TODO
-						unlocked_customer.position = $StoreExit.position
-						add_child(unlocked_customer)
-						progressions.erase(prog)
+						init_customer(prog, texture)
 						break
+
+func init_customer(prog, texture):
+	var unlocked_customer = prog.customer.instantiate()
+	unlocked_customer.my_photo = texture
+	# TODO
+	unlocked_customer.position = $StoreExit.position
+	add_child(unlocked_customer)
+	progressions.erase(prog)

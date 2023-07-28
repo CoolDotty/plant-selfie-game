@@ -1,9 +1,8 @@
-[gd_scene load_steps=41 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=40 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
 [ext_resource type="PackedScene" uid="uid://dt6jmjihvqh3x" path="res://scenes/player/player.tscn" id="2_xmwbm"]
-[ext_resource type="PackedScene" uid="uid://c2cd42wvhir7u" path="res://scenes/npcs/jim/jim.tscn" id="4_68kyt"]
 [ext_resource type="PackedScene" uid="uid://b8jfsuroroct3" path="res://scenes/plants/rose/rose.tscn" id="5_aorip"]
 [ext_resource type="PackedScene" uid="uid://cuuctft7mn5bh" path="res://assets/environment/lf_wall_col.dae" id="10_rd8qn"]
 [ext_resource type="PackedScene" uid="uid://dgf7noibfskmc" path="res://assets/environment/roof.dae" id="11_nlarb"]
@@ -164,9 +163,6 @@ transform = Transform3D(0.789673, -0.00587864, 0.613499, -0.613527, -0.00756642,
 
 [node name="player" parent="." instance=ExtResource("2_xmwbm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81094, 7.85229)
-
-[node name="jim" parent="." instance=ExtResource("4_68kyt")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.308836, 0.881004, -0.478444)
 
 [node name="rose" parent="." instance=ExtResource("5_aorip")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.96627, 1.33733, 0.281837)

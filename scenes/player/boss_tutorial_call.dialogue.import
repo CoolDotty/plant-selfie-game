@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://ey7m2udu5o24"
+path="res://.godot/imported/boss_tutorial_call.dialogue-8f0247a3e9abf553543c56f6e23d968d.tres"
+
+[deps]
+
+source_file="res://scenes/player/boss_tutorial_call.dialogue"
+dest_files=["res://.godot/imported/boss_tutorial_call.dialogue-8f0247a3e9abf553543c56f6e23d968d.tres"]
+
+[params]
+
+defaults=true

@@ -1,21 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq12lwf0ncp3d"]
+[gd_scene load_steps=5 format=3 uid="uid://dq12lwf0ncp3d"]
 
 [ext_resource type="Script" path="res://scenes/credits.gd" id="1_eskq7"]
-[ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_ehch7"]
+[ext_resource type="PackedScene" uid="uid://63qewdxqrr5m" path="res://scenes/util/fadein.tscn" id="2_3umht"]
+[ext_resource type="Texture2D" uid="uid://hf4t53fo5uve" path="res://assets/creditsbg.png" id="2_wn0hy"]
+[ext_resource type="Theme" uid="uid://dny8ghlfi3wav" path="res://assets/cute_theme.tres" id="3_4gshx"]
 
 [node name="credits" type="Node2D"]
 script = ExtResource("1_eskq7")
 
-[node name="Black" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
-position = Vector2(-54, -339)
-scale = Vector2(10, 10)
-texture = ExtResource("2_ehch7")
-centered = false
+[node name="fadeout" parent="." instance=ExtResource("2_3umht")]
+z_index = 999
 
-[node name="TextEdit" type="TextEdit" parent="."]
-offset_left = 433.0
-offset_top = 120.0
-offset_right = 441.0
-offset_bottom = 128.0
-text = "The End!"
+[node name="Creditsbg" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_wn0hy")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 97.0
+offset_top = 116.0
+offset_right = 364.0
+offset_bottom = 522.0
+theme = ExtResource("3_4gshx")
+text = "a game by bigTEAM
+
+Karljklkljasdkljzxnm,casdklj"
+horizontal_alignment = 1
+vertical_alignment = 1
