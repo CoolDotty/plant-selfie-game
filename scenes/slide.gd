@@ -7,7 +7,9 @@ class_name Slide
 @export var plant: Texture
 
 
-var in_pos = Vector2(927, 312)
+var i = Vector2(927, 312)
+
+var in_pos = Vector2(randf_range(i.x - 5, i.x + 5), randf_range(i.y - 5, i.y + 5))
 var in_rot = deg_to_rad(randf_range(-15, 15))
 
 

@@ -3,9 +3,11 @@ class_name Player extends CharacterBody3D
 
 signal photo_taken(texture: Texture, poi: Customer, foi: Flower, site: String, everything)
 
+signal picked_up(name: String)
+
 
 @export_category("Player")
-@export_range(1, 35, 1) var speed: float = 10 # m/s
+@export_range(1, 35, 1) var speed: float = 5 # m/s
 @export_range(10, 400, 1) var acceleration: float = 100 # m/s^2
 
 @export_range(0.1, 3.0, 0.1) var jump_height: float = 1 # m
@@ -34,6 +36,7 @@ var jump_vel: Vector3 # Jumping velocity
 @export var phone_on := false
 
 @export var tutorial_call: DialogueResource
+@export var sell_call: DialogueResource
 
 @onready var CameraAppView = $PhoneUI/CameraAppView
 @onready var GallaryAppView = $PhoneUI/GallaryAppView
@@ -49,8 +52,13 @@ func _ready() -> void:
 	GallaryAppView.visible = false
 	ShareAppView.visible = false
 	
-	await get_tree().create_timer(3).timeout
-	do_phonecall(tutorial_call)
+	
+	Global.mode_changed.connect(
+		func(mode):
+			if mode == "sell":
+				await get_tree().create_timer(5).timeout
+				do_phonecall(sell_call)
+	, CONNECT_ONE_SHOT)
 
 var is_talking = false
 
@@ -76,23 +84,40 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT: capture_mouse()
 
 
-func _on_facebook_pressed(): selected_social = "facebook"
-func _on_deviant_art_pressed(): selected_social = "deviantart"
-func _on_instagram_pressed(): selected_social = "instagram"
-func _on_reddit_pressed(): selected_social = "reddit"
+func _on_facebook_pressed(): 
+	Global.play_sound("ui_click")
+	selected_social = "facebook"
+func _on_deviant_art_pressed(): 
+	Global.play_sound("ui_click")
+	selected_social = "deviantart"
+func _on_instagram_pressed(): 
+	Global.play_sound("ui_click")
+	selected_social = "instagram"
+func _on_reddit_pressed(): 
+	Global.play_sound("ui_click")
+	selected_social = "reddit"
+
 var selected_social = "facebook"
 var current_photo = null
 
 var last_chat_ended_at = 0
 
+var last_time_posted: float = 0
+
 func _process(delta):
 	$hand.position = Vector3(0, 0.33, -0.66).rotated(Vector3(0, 1, 0), camera.rotation.y)
 	
 	if phonecall:
-		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2.ONE, delta * 3)
+		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2(1, 1), delta * 20)
 		$PhoneUI/PhonecallUi/calltime.text = Time.get_time_string_from_unix_time(Time.get_unix_time_from_system() - call_start)
 	else:
-		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2.ZERO, delta * 3)
+		$PhoneUI/PhonecallUi.scale = $PhoneUI/PhonecallUi.scale.lerp(Vector2(1, 0), delta * 20)
+	
+	$PhoneUI/PostingUi/Spinner.rotation_degrees -= 360 * delta
+	if Time.get_unix_time_from_system() > last_time_posted + 3.0:
+		$PhoneUI/PostingUi.scale = $PhoneUI/PostingUi.scale.lerp(Vector2(1, 0), delta * 20)
+	else:
+		$PhoneUI/PostingUi.scale = $PhoneUI/PostingUi.scale.lerp(Vector2(1, 1), delta * 20)
 
 func _physics_process(delta: float) -> void:
 	if mouse_captured: _handle_joypad_camera_rotation(delta)
@@ -103,7 +128,7 @@ func _physics_process(delta: float) -> void:
 		phone_camera.global_transform = $Camera.global_transform
 		phone_camera.fov = $Camera.fov * 3 / 4
 	
-	if Input.is_action_just_pressed("toggle_phone"):
+	if Input.is_action_just_pressed("toggle_phone") and not phonecall:
 		if phone_on:
 			turn_off_phone()
 		else:
@@ -126,7 +151,9 @@ func _physics_process(delta: float) -> void:
 				if Time.get_ticks_msec() - last_chat_ended_at < 250:
 					return
 				current_photo = take_photo()
+				Global.play_sound("photo")
 				CameraAppView.visible = false
+				$PhoneUI/GallaryAppView/Flash.modulate.a = 1.0
 				GallaryAppView.visible = true
 		else:
 			# Hack to not instantly talk again after clicking goodbye chat option
@@ -135,21 +162,35 @@ func _physics_process(delta: float) -> void:
 	
 	if GallaryAppView.visible:
 		GallaryAppView.get_node("PicturePreview").texture = current_photo.photo
+		$PhoneUI/GallaryAppView/Flash.modulate.a = max($PhoneUI/GallaryAppView/Flash.modulate.a - 1.0 / 60, 0.0)
 		release_mouse()
 	
 	if ShareAppView.visible:
 		match selected_social:
 			"facebook":
-				$PhoneUI/ShareAppView/ColorRect.color = Color.DARK_CYAN
+				$PhoneUI/ShareAppView/Control/SocialBG.texture = preload("res://assets/social_sites/facebookbg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.texture = preload("res://assets/social_sites/facebookfg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.modulate.a = 1.0
+				$PhoneUI/ShareAppView/Control/ExtraFG.texture = preload("res://assets/social_sites/facebookfgbonus.png")
 			"deviantart":
-				$PhoneUI/ShareAppView/ColorRect.color = Color.DARK_GREEN
+				$PhoneUI/ShareAppView/Control/SocialBG.texture = preload("res://assets/social_sites/artstagram.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.texture = null
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.modulate.a = 1.0
+				$PhoneUI/ShareAppView/Control/ExtraFG.texture = null
 			"reddit":
-				$PhoneUI/ShareAppView/ColorRect.color = Color.ORANGE_RED
+				$PhoneUI/ShareAppView/Control/SocialBG.texture = preload("res://assets/social_sites/xmemesbg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.texture = preload("res://assets/social_sites/xmemesfg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.modulate.a = 1.0
+				$PhoneUI/ShareAppView/Control/ExtraFG.texture = null
 			"instagram":
-				$PhoneUI/ShareAppView/ColorRect.color = Color.REBECCA_PURPLE
+				$PhoneUI/ShareAppView/Control/SocialBG.texture = preload("res://assets/social_sites/bandsbg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.texture = preload("res://assets/social_sites/bandsfg.png")
+				$PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport/SocialOverlay.modulate.a = 0.6
+				$PhoneUI/ShareAppView/Control/ExtraFG.texture = null
 
 func turn_off_phone():
 	current_photo = null
+	Global.play_sound("phone_off")
 	phone_on = false
 	CameraAppView.visible = false
 	GallaryAppView.visible = false
@@ -159,19 +200,30 @@ func turn_off_phone():
 func turn_on_phone():
 	drop()
 	phone_on = true
+	Global.play_sound("phone_on")
 	CameraAppView.visible = true
 	GallaryAppView.visible = false
 	ShareAppView.visible = false
 
 func _on_trash_pressed(): 
+	Global.play_sound("ui_click")
 	_on_reject_picture_pressed()
 
 func _on_post_pressed():
-	photo_taken.emit(current_photo.photo, current_photo.poi, current_photo.foi, selected_social, current_photo.interests)
-	turn_off_phone()
+	Global.play_sound("post")
+	# Get photo with overlay
+	var img = $PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport.get_texture().get_image()
+	var photo = ImageTexture.create_from_image(img)
+	photo_taken.emit(photo, current_photo.poi, current_photo.foi, selected_social, current_photo.interests)
+	last_time_posted = Time.get_unix_time_from_system()
+	CameraAppView.visible = true
+	GallaryAppView.visible = false
+	ShareAppView.visible = false
+	capture_mouse()
 
 
 func _on_reject_picture_pressed():
+	Global.play_sound("ui_click")
 	CameraAppView.visible = true
 	GallaryAppView.visible = false
 	ShareAppView.visible = false
@@ -179,11 +231,11 @@ func _on_reject_picture_pressed():
 
 
 func _on_accept_picture_pressed():
+	Global.play_sound("ui_click")
 	CameraAppView.visible = false
 	GallaryAppView.visible = false
 	ShareAppView.visible = true
-	ShareAppView.get_node("Control/PicturePreview").texture = current_photo.photo
-	ShareAppView.get_node("Control/PicturePreview").size = Vector2(256, 256)
+	ShareAppView.get_node("Control/SubViewportContainer/SubViewport/Pic").texture = current_photo.photo
 	selected_social = "facebook"
 
 
@@ -230,19 +282,22 @@ func attempt_to_interact():
 		drop()
 
 
-func pickup(thing_of_interest):
-	if Time.get_ticks_msec() - last_chat_ended_at < 250:
+func pickup(thing_of_interest, forced=false):
+	if not forced and Time.get_ticks_msec() - last_chat_ended_at < 250:
 		return
+	Global.play_sound("pot_pick")
 	thing_of_interest.get_parent().remove_child(thing_of_interest)
 	thing_of_interest.position = Vector3.ZERO
 	thing_of_interest.no_collide = true
 	await get_tree().physics_frame
 	$hand.add_child(thing_of_interest)
+	picked_up.emit(thing_of_interest.full_name)
 
 
 func drop():
 	if $hand.get_child_count() == 0:
 		return
+	Global.play_sound("pot_drop")
 	last_chat_ended_at = Time.get_ticks_msec()
 	var thing_held = $hand.get_child(0)
 	var pos = thing_held.global_position
@@ -250,8 +305,9 @@ func drop():
 	thing_held.no_collide = false
 	await get_tree().physics_frame
 	thing_held.position = pos
-	thing_held.velocity = Vector3(0, 3, 0)
+	thing_held.velocity = velocity + Vector3(0, 3, 0)
 	owner.get_parent().add_child(thing_held)
+	picked_up.emit(null)
 
 func sell(to: Customer):
 	if $hand.get_child_count() == 0:
@@ -260,7 +316,9 @@ func sell(to: Customer):
 	var thing_held = $hand.get_child(0)
 	$hand.remove_child(thing_held)
 	await get_tree().physics_frame
-	to.sell(thing_held)
+	var didsell = to.sell(thing_held)
+	if not didsell:
+		$hand.add_child(thing_held)
 
 func take_photo():
 	# Retrieve the captured image.
@@ -308,8 +366,12 @@ var phonecall = false
 var call_start = 0
 
 func do_phonecall(res: DialogueResource):
-	# ring ring
-	await get_tree().create_timer(3).timeout
+	while is_talking:
+		await DialogueManager.dialogue_ended
+		await get_tree().create_timer(2).timeout
+	last_chat_ended_at = Time.get_ticks_msec() + 4000
+	Global.play_sound("ringtone", 2)
+	await get_tree().create_timer(2).timeout
 	call_start = Time.get_unix_time_from_system()
 	turn_on_phone()
 	phonecall = true

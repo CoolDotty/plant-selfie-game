@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://dsy0khoil2b3l"
+path="res://.godot/imported/omegaboomer_purchase.dialogue-4d2b98b2c86469d988e2527372120749.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/omegaboomer/omegaboomer_purchase.dialogue"
+dest_files=["res://.godot/imported/omegaboomer_purchase.dialogue-4d2b98b2c86469d988e2527372120749.tres"]
+
+[params]
+
+defaults=true

@@ -20,6 +20,8 @@ func _process(_delta):
 		var target_rot = get_viewport().get_camera_3d().global_rotation.y
 		rotation.y = target_rot
 
+var in_air = false
+
 func _physics_process(delta):
 	$CollisionShape3D.disabled = no_collide
 	if no_collide: return
@@ -27,3 +29,10 @@ func _physics_process(delta):
 	velocity += Vector3(0, -gravity * delta, 0)
 	velocity = velocity.move_toward(Vector3.ZERO, delta)
 	move_and_slide()
+	
+	if is_on_floor() and in_air:
+		Global.play_sound("pot_place")
+		in_air = false
+	
+	if not is_on_floor() and not in_air:
+		in_air = true

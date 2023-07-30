@@ -1,20 +1,106 @@
-[gd_scene load_steps=14 format=3 uid="uid://dt6jmjihvqh3x"]
+[gd_scene load_steps=27 format=3 uid="uid://dt6jmjihvqh3x"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_avdhi"]
 [ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_0g55o"]
 [ext_resource type="Resource" uid="uid://ey7m2udu5o24" path="res://scenes/player/boss_tutorial_call.dialogue" id="2_5kdj4"]
 [ext_resource type="Texture2D" uid="uid://bbr0wdm7mgkuy" path="res://assets/phone_overlay.png" id="2_thmkd"]
 [ext_resource type="Texture2D" uid="uid://be84k8o7nts3g" path="res://assets/circle.png" id="2_yhcll"]
+[ext_resource type="Resource" uid="uid://bmt2f2tlp3nup" path="res://scenes/player/boss_sell_call.dialogue" id="3_nwnep"]
 [ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="4_nmboj"]
 [ext_resource type="Texture2D" uid="uid://dt67vr3oggp70" path="res://assets/logos/facebooklogo.png" id="5_wt8dn"]
 [ext_resource type="Texture2D" uid="uid://dhxi8n2lagu7b" path="res://assets/logos/deviantartlogo.png" id="6_2txdh"]
 [ext_resource type="Texture2D" uid="uid://dx2nloqav0cwo" path="res://assets/logos/instagramlogo.png" id="7_kq776"]
+[ext_resource type="Texture2D" uid="uid://badqt1cv5mui4" path="res://assets/retake.png" id="7_tk0um"]
+[ext_resource type="Texture2D" uid="uid://cy54wnlaothv2" path="res://assets/share.png" id="8_5xjxo"]
 [ext_resource type="Texture2D" uid="uid://dwp27qeafsus8" path="res://assets/logos/redditlogo.png" id="8_fjxbx"]
 [ext_resource type="Texture2D" uid="uid://b33udev2hvy8w" path="res://assets/phonecall_ui.png" id="9_g1qsx"]
+[ext_resource type="Texture2D" uid="uid://blqgcqag1cpj5" path="res://assets/social_sites/bandsbg.png" id="9_kdf2q"]
+[ext_resource type="Texture2D" uid="uid://cmvxcr5ilrp4y" path="res://assets/social_sites/facebookfg.png" id="10_qkwix"]
+[ext_resource type="Texture2D" uid="uid://brjuuhk25lvqn" path="res://assets/social_sites/facebookfgbonus.png" id="11_axh6q"]
+[ext_resource type="Texture2D" uid="uid://d3v0kcxww36bj" path="res://assets/delete.png" id="13_3jft8"]
+[ext_resource type="Texture2D" uid="uid://ccod7vh32dblq" path="res://assets/send.png" id="14_6u20h"]
+[ext_resource type="Texture2D" uid="uid://do8tgnrh7r8mf" path="res://assets/posting_ui.png" id="17_atx78"]
+[ext_resource type="Texture2D" uid="uid://c2hsu5eceqqaj" path="res://assets/spinner.png" id="18_t3fu4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ww7dt"]
 radius = 0.3
 height = 1.6
+
+[sub_resource type="Shader" id="Shader_56sak"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+//the depth at which the outline shows
+uniform float minDepth = 0.0;
+uniform float maxDepth = 1.0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D DEPTH_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+uniform float thickness : hint_range(0, 5.0, 1.0) = 3.0;
+uniform vec4 colorOutline : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+uniform float zNear = 0.1;
+uniform float zFar = 15.0;
+
+//moves the quad to the camera position (?)
+void vertex() {
+	POSITION = vec4(VERTEX, 1.0);
+}
+
+//linearises the depth sample
+float linearDepth(float depthSample) {
+	depthSample = 2.0 * depthSample - 1.0;
+	float zLinear = 2.0 * zNear * zFar / (zFar + zNear - depthSample * (zFar - zNear));
+	return zLinear;
+}
+
+void fragment() {
+	vec4 originalColor = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	//width and height of the screen / 1.0
+	vec2 texelSize = vec2(1.0 / VIEWPORT_SIZE.x, 1.0 / VIEWPORT_SIZE.y);
+	
+	//UV points
+	float offsetPositive = +ceil(thickness * 0.5);
+	float offsetNegative = -floor(thickness * 0.5);
+	float left = texelSize.x * offsetNegative;
+	float right = texelSize.x * offsetPositive;
+	float top = texelSize.y * offsetNegative;
+	float bottom = texelSize.y * offsetNegative;
+	vec2 uv0 = SCREEN_UV + vec2(left, top);
+	vec2 uv1 = SCREEN_UV + vec2(right, bottom);
+	vec2 uv2 = SCREEN_UV + vec2(right, top);
+	vec2 uv3 = SCREEN_UV + vec2(left, bottom);
+	
+	//depth textures
+	float d0 = linearDepth(texture(DEPTH_TEXTURE, uv0).x);
+	float d1 = linearDepth(texture(DEPTH_TEXTURE, uv1).x);
+	float d2 = linearDepth(texture(DEPTH_TEXTURE, uv2).x);
+	float d3 = linearDepth(texture(DEPTH_TEXTURE, uv3).x);
+	
+	float d = length(vec2(d1 - d0, d3 -d2));
+	d = smoothstep(minDepth, maxDepth, d);
+	vec4 output = vec4(d);
+	
+	//we use the mix() function to interpolate between
+	// the original and outline color (UE's Shader Lerp)
+	ALBEDO = mix(originalColor.rgb, colorOutline.rgb, d);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xfp7"]
+render_priority = 0
+shader = SubResource("Shader_56sak")
+shader_parameter/minDepth = 0.0
+shader_parameter/maxDepth = 1.0
+shader_parameter/thickness = 3.0
+shader_parameter/colorOutline = Color(1, 1, 1, 1)
+shader_parameter/zNear = 0.1
+shader_parameter/zFar = 15.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ggbwm"]
+material = SubResource("ShaderMaterial_1xfp7")
+size = Vector2(2, 2)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8fdvh"]
 points = PackedVector3Array(-0.5, -0.25, 0, 0.5, -0.25, 0, 0.5, 0.25, 0, -0.5, 0.25, 0, -5.5, -5.25, -20, 5.5, -5.25, -20, 5.5, 5.25, -20, -5.5, 5.25, -20)
@@ -22,6 +108,7 @@ points = PackedVector3Array(-0.5, -0.25, 0, 0.5, -0.25, 0, 0.5, 0.25, 0, -0.5, 0
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_avdhi")
 tutorial_call = ExtResource("2_5kdj4")
+sell_call = ExtResource("3_nwnep")
 
 [node name="hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229511, -0.289266)
@@ -31,6 +118,12 @@ shape = SubResource("CapsuleShape3D_ww7dt")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.470091, 0)
+
+[node name="ScreenShader" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.470091, -1.19799)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_ggbwm")
+skeleton = NodePath("../..")
 
 [node name="SnapshotHitbox" type="Area3D" parent="Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0305929)
@@ -78,7 +171,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PhoneUI/CameraAppView/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(292, 515)
+size = Vector2i(2, 2)
 render_target_update_mode = 0
 
 [node name="phone_camera" type="Camera3D" parent="PhoneUI/CameraAppView/SubViewportContainer/SubViewport"]
@@ -107,127 +200,178 @@ size_flags_vertical = 8
 
 [node name="RejectPicture" type="Button" parent="PhoneUI/GallaryAppView/GridContainer"]
 layout_mode = 2
-offset_left = 22.0
-offset_top = -51.0
-offset_right = 78.0
-offset_bottom = -20.0
+offset_left = 20.0
+offset_top = -107.0
+offset_right = 92.0
+offset_bottom = -35.0
 mouse_filter = 1
-text = "Reject"
+icon = ExtResource("7_tk0um")
+flat = true
+icon_alignment = 1
 
 [node name="AcceptPicture" type="Button" parent="PhoneUI/GallaryAppView/GridContainer"]
 layout_mode = 2
-offset_left = 207.0
-offset_top = -50.0
-offset_right = 267.0
-offset_bottom = -19.0
+offset_left = 205.0
+offset_top = -106.0
+offset_right = 277.0
+offset_bottom = -34.0
 mouse_filter = 1
-text = "Accept"
+icon = ExtResource("8_5xjxo")
+flat = true
+icon_alignment = 1
+
+[node name="Flash" type="ColorRect" parent="PhoneUI/GallaryAppView"]
+layout_mode = 2
+mouse_filter = 2
 
 [node name="ShareAppView" type="MarginContainer" parent="PhoneUI"]
 layout_mode = 2
-offset_left = 426.0
+offset_left = 421.0
 offset_top = 73.0
-offset_right = 718.0
+offset_right = 721.0
 offset_bottom = 588.0
-
-[node name="ColorRect" type="ColorRect" parent="PhoneUI/ShareAppView"]
-layout_mode = 2
-mouse_filter = 1
 
 [node name="Control" type="Control" parent="PhoneUI/ShareAppView"]
 layout_mode = 2
 
-[node name="PicturePreview" type="TextureRect" parent="PhoneUI/ShareAppView/Control"]
+[node name="SocialBG" type="TextureRect" parent="PhoneUI/ShareAppView/Control"]
+layout_mode = 2
+offset_right = 312.0
+offset_bottom = 362.0
+texture = ExtResource("9_kdf2q")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="PhoneUI/ShareAppView/Control"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 18.0
-offset_right = 274.0
-offset_bottom = 274.0
-texture = ExtResource("4_nmboj")
-expand_mode = 1
-stretch_mode = 6
+offset_left = 27.0
+offset_top = 31.0
+offset_right = 283.0
+offset_bottom = 287.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="PhoneUI/ShareAppView/Control/SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Pic" type="Sprite2D" parent="PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport"]
+position = Vector2(128, 128)
+texture = ExtResource("2_0g55o")
+
+[node name="SocialOverlay" type="Sprite2D" parent="PhoneUI/ShareAppView/Control/SubViewportContainer/SubViewport"]
+position = Vector2(129, 150)
+texture = ExtResource("10_qkwix")
+
+[node name="ExtraFG" type="TextureRect" parent="PhoneUI/ShareAppView/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("11_axh6q")
 
 [node name="ColorRect" type="ColorRect" parent="PhoneUI/ShareAppView/Control"]
 layout_mode = 0
 offset_left = -4.0
-offset_top = 288.0
-offset_right = 296.0
-offset_bottom = 538.0
+offset_top = 343.0
+offset_right = 301.0
+offset_bottom = 518.0
 color = Color(0, 0, 0, 1)
-
-[node name="Label" type="Label" parent="PhoneUI/ShareAppView/Control/ColorRect"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 13.0
-offset_right = 79.0
-offset_bottom = 39.0
-text = "Share to:"
 
 [node name="Facebook" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 50.0
-offset_right = 152.0
-offset_bottom = 186.0
-scale = Vector2(0.35, 0.35)
+offset_left = 12.0
+offset_top = 26.0
+offset_right = 151.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 24
+text = "BasedBook"
 icon = ExtResource("5_wt8dn")
+flat = true
 icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="DeviantArt" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 86.0001
-offset_top = 49.0
-offset_right = 222.0
-offset_bottom = 185.0
-scale = Vector2(0.35, 0.35)
+offset_left = 82.0001
+offset_top = 26.0
+offset_right = 220.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 24
+text = "Artstagram"
 icon = ExtResource("6_2txdh")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="Instagram" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 158.0
-offset_top = 49.0
-offset_right = 294.0
-offset_bottom = 185.0
-scale = Vector2(0.35, 0.35)
+offset_left = 154.0
+offset_top = 26.0
+offset_right = 290.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 24
+text = "Band$"
 icon = ExtResource("7_kq776")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="Reddit" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 226.0
-offset_top = 48.0
-offset_right = 362.0
-offset_bottom = 184.0
-scale = Vector2(0.35, 0.35)
+offset_left = 222.0
+offset_top = 26.0
+offset_right = 358.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 24
+text = "x-memes"
 icon = ExtResource("8_fjxbx")
+flat = true
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="Trash" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 51.0001
-offset_top = 139.0
-offset_right = 244.0
-offset_bottom = 275.0
+offset_left = 50.0
+offset_top = 111.0
+offset_right = 243.0
+offset_bottom = 247.0
 scale = Vector2(0.35, 0.35)
-text = "Delete!"
-icon = ExtResource("4_nmboj")
+icon = ExtResource("13_3jft8")
+flat = true
+icon_alignment = 1
 expand_icon = true
 
 [node name="Post" type="Button" parent="PhoneUI/ShareAppView/Control/ColorRect"]
 layout_mode = 0
-offset_left = 190.0
-offset_top = 140.0
-offset_right = 326.0
-offset_bottom = 276.0
+offset_left = 189.0
+offset_top = 112.0
+offset_right = 325.0
+offset_bottom = 248.0
 scale = Vector2(0.35, 0.35)
-text = "Post!"
-icon = ExtResource("4_nmboj")
+icon = ExtResource("14_6u20h")
+flat = true
+icon_alignment = 1
 expand_icon = true
+
+[node name="PostingUi" type="Sprite2D" parent="PhoneUI"]
+position = Vector2(571, 110)
+scale = Vector2(1, 1e-05)
+texture = ExtResource("17_atx78")
+
+[node name="Spinner" type="Sprite2D" parent="PhoneUI/PostingUi"]
+position = Vector2(93, 0)
+texture = ExtResource("18_t3fu4")
 
 [node name="PhonecallUi" type="Sprite2D" parent="PhoneUI"]
 position = Vector2(572, 150)
+scale = Vector2(1, 1e-05)
 texture = ExtResource("9_g1qsx")
 
 [node name="calltime" type="Label" parent="PhoneUI/PhonecallUi"]

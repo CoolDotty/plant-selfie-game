@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkgwkivr7rln8"]
+
+[ext_resource type="Script" path="res://scenes/credits_customer.gd" id="1_a2ku4"]
+[ext_resource type="Texture2D" uid="uid://bq3os4k3ftsq5" path="res://assets/npc_bodies/jim_front.png" id="2_7qmen"]
+[ext_resource type="Texture2D" uid="uid://127udne2g8yu" path="res://assets/plants/Os.png" id="3_tlitp"]
+
+[node name="CreditsCustomer" type="Node2D"]
+script = ExtResource("1_a2ku4")
+
+[node name="Customer" type="Sprite2D" parent="."]
+scale = Vector2(0.175, 0.175)
+texture = ExtResource("2_7qmen")
+
+[node name="Flower" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-8, -21)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_tlitp")

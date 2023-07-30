@@ -7,14 +7,15 @@
 [ext_resource type="Resource" uid="uid://gmoghwlncks4" path="res://scenes/npcs/mrbeast/mrbeast_purchase.dialogue" id="5_18y8t"]
 
 [node name="mrbeast" instance=ExtResource("1_c6vnv")]
-full_name = "Cassidy"
+full_name = "Mr Yeast"
 front_sprite = ExtResource("2_3g81m")
 back_sprite = ExtResource("3_wi0ya")
 dialogue = ExtResource("4_4nufi")
 purchase_dialogue = ExtResource("5_18y8t")
+bloop = "bloop1"
 
 [node name="Billboard" parent="." index="1"]
 texture = ExtResource("2_3g81m")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(9.66717, 0, 2.54305)
+target_position = Vector3(8.17592, 0, -6.02715)

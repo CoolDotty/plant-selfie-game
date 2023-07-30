@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bvr0av8siauwo"
+path="res://.godot/imported/cute-ringtone vibritherabjit123.wav-c00624174e085a7b1270230f3e8d311c.sample"
+
+[deps]
+
+source_file="res://assets/sounds/cute-ringtone vibritherabjit123.wav"
+dest_files=["res://.godot/imported/cute-ringtone vibritherabjit123.wav-c00624174e085a7b1270230f3e8d311c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

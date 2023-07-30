@@ -17,4 +17,4 @@ purchase_dialogue = ExtResource("5_ajbna")
 texture = ExtResource("2_rvewo")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(5.14209, 0, 8.45072)
+target_position = Vector3(-2.04633, 0, -0.737961)

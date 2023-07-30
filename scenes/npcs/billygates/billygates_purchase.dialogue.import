@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bfuct0xrp27my"
+path="res://.godot/imported/billygates_purchase.dialogue-af8d0888ab47b14fa43238b67cbf33ed.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/billygates/billygates_purchase.dialogue"
+dest_files=["res://.godot/imported/billygates_purchase.dialogue-af8d0888ab47b14fa43238b67cbf33ed.tres"]
+
+[params]
+
+defaults=true

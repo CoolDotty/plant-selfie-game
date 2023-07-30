@@ -9,6 +9,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var back_sprite = preload("res://icon.svg")
 @export var dialogue: DialogueResource
 @export var purchase_dialogue: DialogueResource
+@export var bloop: String = "bloop1"
 
 var looking_at: Node3D = null
 
@@ -115,17 +116,26 @@ func _physics_process(delta):
 	move_and_slide()
 
 func sell(plant: Node3D):
-	if exiting: return
+	if exiting: return false
+	if $hand.get_child_count() > 0: return false
 	$hand.add_child(plant)
 	# play cha-ching
+	Global.play_sound("purchase")
 	# Leave store
 	set_movement_target(get_parent().get_node("StoreExit").position)
 	exiting = true
+	return true
+
+var i_am_talking = false
+
 
 func talk(toWhom):
 	if exiting: return
 	abort_movement()
 	looking_at = toWhom
+	
+	Global.current_bloop = bloop
+	
 	if Global.mode == "market":
 		DialogueManager.show_example_dialogue_balloon(dialogue)
 	if Global.mode == "sell":

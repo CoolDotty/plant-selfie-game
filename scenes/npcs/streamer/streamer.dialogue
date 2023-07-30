@@ -1,0 +1,8 @@
+Jim: This place looks lovey!
+- How are you?
+	Jim: I'm great, thank you for asking!
+	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
+	- For sure! => END
+- Thank you! => END
+
+=> END

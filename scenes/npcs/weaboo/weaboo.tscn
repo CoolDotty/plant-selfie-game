@@ -12,6 +12,7 @@ front_sprite = ExtResource("2_a5087")
 back_sprite = ExtResource("3_blem2")
 dialogue = ExtResource("3_067bj")
 purchase_dialogue = ExtResource("5_8wucm")
+bloop = null
 
 [node name="Billboard" parent="." index="1"]
 texture = ExtResource("2_a5087")

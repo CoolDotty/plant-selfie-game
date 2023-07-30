@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://dc85d55427gc2"
+path="res://.godot/imported/streamer_purchase.dialogue-30fba87ef4c57c3f89205a6eaf6205f4.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/streamer/streamer_purchase.dialogue"
+dest_files=["res://.godot/imported/streamer_purchase.dialogue-30fba87ef4c57c3f89205a6eaf6205f4.tres"]
+
+[params]
+
+defaults=true

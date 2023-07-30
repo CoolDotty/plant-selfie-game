@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bmt2f2tlp3nup"
+path="res://.godot/imported/boss_sell_call.dialogue-1818bddee28c6f2611613f4bf496bace.tres"
+
+[deps]
+
+source_file="res://scenes/player/boss_sell_call.dialogue"
+dest_files=["res://.godot/imported/boss_sell_call.dialogue-1818bddee28c6f2611613f4bf496bace.tres"]
+
+[params]
+
+defaults=true

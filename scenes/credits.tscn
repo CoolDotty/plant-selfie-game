@@ -28,3 +28,9 @@ text = "a game by bigTEAM
 Karljklkljasdkljzxnm,casdklj"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CustomerLeft" type="Node2D" parent="."]
+position = Vector2(-59, 622)
+
+[node name="CustomerRight" type="Node2D" parent="."]
+position = Vector2(1225, 622)

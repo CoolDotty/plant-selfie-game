@@ -10,15 +10,30 @@ func p(poi, foi, site, customer):
 	}
 
 var progressions = [
-	p(null, null, "instagram", preload("res://scenes/npcs/jim/jim.tscn")),
-	p("jim", null, "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
-	p(null, "sunflower", "deviantart", preload("res://scenes/npcs/lucio/lucio.tscn"))
+	p(null, null, "facebook", preload("res://scenes/npcs/jim/jim.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/lucio/lucio.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/animeartist/animeartist.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/billygates/billygates.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/mrbeast/mrbeast.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/omegaboomer/omegaboomer.tscn")),
+	p(null, null, "facebook", preload("res://scenes/npcs/streamer/streamer.tscn"))
 ]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	_start_game()
+
+func _start_game():
+	await get_tree().create_timer(5).timeout
+	$player.do_phonecall($player.tutorial_call)
+	await get_tree().create_timer(5).timeout
+	$Shoppin4Plantz.finished.connect(func(): $Shoppin4Plantz.play())
+	DialogueManager.dialogue_ended.connect(
+		func(a):
+			$Shoppin4Plantz.play()
+	, CONNECT_ONE_SHOT)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,28 +59,44 @@ func end_game():
 	
 
 func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: String, everything):
-	if not is_instance_valid(poi) and not is_instance_valid(foi):
-		# If photo has no interests, don't check progressions
-		pass
-	else:
-		for prog in progressions:
-			if not prog.poi and not prog.foi:
-				# hack to allow tutorial photo
-				init_customer(prog, texture)
-				break
-			# progression does not need a person or person matches progression
-			if not prog.poi or (prog.poi and is_instance_valid(poi) and equal(poi.full_name, prog.poi)):
-				# progression does not need a flower or flower matches progression
-				if not prog.foi or (prog.foi and is_instance_valid(foi) and equal(foi.full_name, prog.foi)):
-					# website is correct
-					if equal(site, prog.site):
-						init_customer(prog, texture)
-						break
+	# Wait for photo post to finish spinning
+	await get_tree().create_timer(4).timeout
+	for prog in progressions:
+		if not prog.poi and not prog.foi:
+			init_customer(prog, texture)
+			return
+		# progression does not need a person or person matches progression
+		if not prog.poi or (prog.poi and is_instance_valid(poi) and equal(poi.full_name, prog.poi)):
+			# progression does not need a flower or flower matches progression
+			if not prog.foi or (prog.foi and is_instance_valid(foi) and equal(foi.full_name, prog.foi)):
+				# website is correct
+				if equal(site, prog.site):
+					init_customer(prog, texture)
+					return
+	# mundane photo
+	$LikesNotification/Label.text = "%s people liked your post" % randi_range(2, 9)
+	$LikesNotification.go()
+	Global.play_sound("like")
 
 func init_customer(prog, texture):
+	progressions.erase(prog)
 	var unlocked_customer = prog.customer.instantiate()
 	unlocked_customer.my_photo = texture
-	# TODO
+	# hack to allow no requirement photos
+	$LikesNotification/Label.text = "%s people liked your post" % randi_range(100, 500)
+	$LikesNotification.go()
+	Global.play_sound("like")
+	await get_tree().create_timer(3).timeout
+	Global.play_sound("comment")
+	$CommentNotification/Label.text = "%s followed you!" % unlocked_customer.full_name
+	$CommentNotification.go()
+	await get_tree().create_timer(5).timeout
 	unlocked_customer.position = $StoreExit.position
+	$StoreExit/DoorChime.play()
 	add_child(unlocked_customer)
-	progressions.erase(prog)
+
+
+func _on_player_picked_up(name):
+	if name:
+		$CurrentPlant.go()
+		$CurrentPlant/Label.text = name

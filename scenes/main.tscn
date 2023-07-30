@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bctkgwmdbh354"]
+[gd_scene load_steps=79 format=3 uid="uid://bctkgwmdbh354"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_wh5kq"]
 [ext_resource type="Texture2D" uid="uid://bb0xjqsm2nv40" path="res://addons/kenney_prototype_textures/dark/texture_01.png" id="2_7vasd"]
@@ -17,10 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://bi342pofdax0x" path="res://assets/environment/displaytable_col.dae" id="20_ehl4j"]
 [ext_resource type="PackedScene" uid="uid://bxr8mex81kbpo" path="res://scenes/plants/sunflower/sunflower.tscn" id="23_aqpgy"]
 [ext_resource type="PackedScene" uid="uid://vljinkemj30n" path="res://scenes/plants/chrysanthemum/chrysanthemum.tscn" id="24_g8wmq"]
+[ext_resource type="AudioStream" uid="uid://btmcumgddnop5" path="res://assets/sounds/doorchime.ogg" id="24_sic8o"]
+[ext_resource type="PackedScene" uid="uid://bg1b3ggmj0sre" path="res://scenes/plants/greenherb/greenherb.tscn" id="24_y5frr"]
+[ext_resource type="Texture2D" uid="uid://co2pp7pv0na0o" path="res://assets/gui/sun.png" id="25_g55mb"]
 [ext_resource type="PackedScene" uid="uid://be7ofg7vr3cd4" path="res://scenes/plants/tulip/tulip.tscn" id="25_hyi7s"]
 [ext_resource type="PackedScene" uid="uid://bj1wjkrdbdoxa" path="res://scenes/plants/tigerlily/tigerlily.tscn" id="26_41bg2"]
+[ext_resource type="Script" path="res://scenes/clock.gd" id="26_b2rk5"]
 [ext_resource type="PackedScene" uid="uid://b61dllp1xtg2l" path="res://scenes/plants/mushroom/mushroom.tscn" id="27_3143h"]
+[ext_resource type="FontFile" uid="uid://dl27h20mwsrif" path="res://assets/fonts/RustyHooksRegular-nROER.ttf" id="27_al7yg"]
+[ext_resource type="Theme" uid="uid://dny8ghlfi3wav" path="res://assets/cute_theme.tres" id="27_k1ksf"]
+[ext_resource type="Texture2D" uid="uid://bf28kd548n4op" path="res://assets/gui/clock.png" id="27_x45wf"]
 [ext_resource type="PackedScene" uid="uid://drr2mcncn2w47" path="res://scenes/plants/os/os.tscn" id="28_1efhv"]
+[ext_resource type="AudioStream" uid="uid://ba7yau2x8dnv0" path="res://assets/sounds/Shoppin4plantz.ogg" id="29_j3f5a"]
+[ext_resource type="Script" path="res://scenes/notification.gd" id="30_nfkbt"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_rjb6p"]
 vertices = PackedVector3Array(-10.0112, 6.56248, 0.237752, -10.0112, 6.56248, 10.4378, -0.411221, 8.05248, 10.4378, -2.81122, 7.71248, 7.88775, -3.61122, 7.52248, 10.4378, -0.411221, 8.05248, -9.96225, -10.0112, 6.56248, -9.96225, -10.0112, 6.56248, 0.237752, -0.411221, 8.05248, 10.4378, 9.78878, 6.56248, 10.4378, 9.78878, 6.56248, 0.237752, 7.74878, 6.85248, -1.80225, 5.70878, 7.14248, -3.84225, 3.66878, 7.52248, -5.88225, 1.62878, 7.81248, -7.92225, -3.61122, 7.52248, -9.96225, -2.81122, 7.71248, 7.88775, 2.98878, 7.62248, 10.4378, -0.411075, 8.05248, -4.0104, -0.446757, 8.05248, 6.83966, 6.8013, 6.95248, 6.8924, -3.98719, 7.52248, -7.59588, -0.423162, 8.05248, -7.56951, 6.8131, 6.95248, -0.372189, 3.23727, 7.52248, 6.86603, -4.02287, 7.52248, 3.25418, -0.458844, 8.05248, 3.28055, 3.22519, 7.52248, 3.18692, -3.9751, 7.52248, -3.91677, -7.56302, 6.94248, -0.357664, -7.65913, 6.94248, -3.94314, 9.78878, 6.56248, 0.237752, 9.78878, 6.56248, -9.96225, -0.411221, 8.05248, -9.96225, 1.62878, 7.81248, -7.92225, 3.66878, 7.52248, -5.88225, 5.70878, 7.14248, -3.84225, 7.74878, 6.85248, -1.80225, 2.98878, 7.62248, -9.96225, 6.72878, 6.95248, -7.62225, -5.21122, 0.472481, -2.16225, -2.81122, 0.472481, -2.16225, -2.21122, 0.472481, -4.56225, 1.98878, 0.472481, -4.56225, 2.58878, 0.472481, -2.16225, 4.98878, 0.472481, -1.56225, 4.98878, 0.472481, 4.43775, 3.78878, 0.472481, 5.03775, 3.78878, 0.472481, 8.63775, 8.58878, 0.472481, 8.63775, 1.98878, 0.472481, -4.56225, 4.98878, 0.472481, -1.56225, 8.58878, 0.472481, -0.362248, 8.58878, 0.472481, -8.76225, -0.411221, 0.472481, -8.76225, 4.98878, 0.472481, 4.43775, 8.58878, 0.472481, 8.63775, 8.58878, 0.472481, -0.362248, 4.98878, 0.472481, -1.56225, -2.21122, 0.472481, -4.56225, 1.98878, 0.472481, -4.56225, -0.411221, 0.472481, -8.76225, -8.81122, 0.472481, -2.16225, -5.21122, 0.472481, -2.16225, -2.21122, 0.472481, -4.56225, -0.411221, 0.472481, -8.76225, -8.81122, 0.472481, -8.76225, 0.18878, 0.472481, 4.43775, -0.411221, 0.472481, -0.362248, -0.411221, 0.472481, 4.43775, 3.78878, 0.472481, 5.03775, 0.18878, 0.472481, 4.43775, -0.411221, 0.472481, 4.43775, -5.21122, 0.472481, 5.03775, -2.81122, 0.472481, 8.63775, 3.78878, 0.472481, 8.63775, -8.81122, 0.472481, 8.63775, -2.81122, 0.472481, 8.63775, -5.21122, 0.472481, 5.03775, -5.21122, 0.472481, 5.03775, -5.21122, 0.472481, -2.16225, -8.81122, 0.472481, -2.16225, -8.81122, 0.472481, 8.63775)
@@ -680,7 +689,90 @@ velocity = Vector3(0, -667.333, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83135, 1.73448, 2.5392)
 
 [node name="StoreExit" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340184, 8.99164)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.340184, 9.3478)
+
+[node name="DoorChime" type="AudioStreamPlayer3D" parent="StoreExit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51272, -0.38007)
+stream = ExtResource("24_sic8o")
+volume_db = -5.0
+
+[node name="greenherb" parent="." instance=ExtResource("24_y5frr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.57733, 1.25114, 2.58847)
+
+[node name="Clock" type="Node2D" parent="."]
+script = ExtResource("26_b2rk5")
+
+[node name="BG" type="Sprite2D" parent="Clock"]
+z_index = -1
+position = Vector2(1075, 80)
+texture = ExtResource("27_x45wf")
+
+[node name="Label" type="Label" parent="Clock/BG"]
+offset_left = -94.0
+offset_top = -42.0
+offset_right = 31.0
+offset_bottom = 5.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("27_al7yg")
+theme_override_font_sizes/font_size = 40
+text = "12:23"
+
+[node name="Sun" type="Sprite2D" parent="Clock"]
+position = Vector2(1220, 31)
+texture = ExtResource("25_g55mb")
+
+[node name="LikesNotification" type="ColorRect" parent="."]
+offset_left = 15.0
+offset_right = 15.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("30_nfkbt")
+
+[node name="Label" type="Label" parent="LikesNotification"]
+layout_mode = 2
+offset_top = 7.0
+offset_right = 198.0
+offset_bottom = 33.0
+theme = ExtResource("27_k1ksf")
+text = "%s people liked your post"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommentNotification" type="ColorRect" parent="."]
+offset_left = 15.0
+offset_top = 80.0
+offset_right = 15.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("30_nfkbt")
+
+[node name="Label" type="Label" parent="CommentNotification"]
+layout_mode = 2
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 31.0
+theme = ExtResource("27_k1ksf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentPlant" type="ColorRect" parent="."]
+offset_left = 13.0
+offset_top = 594.0
+offset_right = 53.0
+offset_bottom = 634.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("30_nfkbt")
+
+[node name="Label" type="Label" parent="CurrentPlant"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("27_k1ksf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shoppin4Plantz" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_j3f5a")
+volume_db = -10.0
 
 [node name="register" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.39073)
@@ -717,3 +809,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_30mbw")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="windowR"]
 
 [connection signal="photo_taken" from="player" to="." method="_on_player_photo_taken"]
+[connection signal="picked_up" from="player" to="." method="_on_player_picked_up"]

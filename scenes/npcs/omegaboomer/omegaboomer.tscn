@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://d17ujufyq7v3s"]
+
+[ext_resource type="PackedScene" uid="uid://bj8b84ws0xe1e" path="res://scenes/customer/customer.tscn" id="1_ekvu1"]
+[ext_resource type="Texture2D" uid="uid://brlg11n57547s" path="res://assets/npc_bodies/boomer_front.png" id="2_pr078"]
+[ext_resource type="Texture2D" uid="uid://yxsdipsqnrv3" path="res://assets/npc_bodies/boomer_back.png" id="3_t67a3"]
+[ext_resource type="Resource" uid="uid://coyrnmfpw4r8t" path="res://scenes/npcs/omegaboomer/omegaboomer.dialogue" id="4_dlyjh"]
+[ext_resource type="Resource" uid="uid://dsy0khoil2b3l" path="res://scenes/npcs/omegaboomer/omegaboomer_purchase.dialogue" id="5_un8t6"]
+
+[node name="boomer" instance=ExtResource("1_ekvu1")]
+full_name = "V. Olde"
+front_sprite = ExtResource("2_pr078")
+back_sprite = ExtResource("3_t67a3")
+dialogue = ExtResource("4_dlyjh")
+purchase_dialogue = ExtResource("5_un8t6")
+bloop = "bloop1"
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_pr078")
+
+[node name="NavigationAgent3D" parent="." index="2"]
+target_position = Vector3(4.58881, 0, 1.59721)

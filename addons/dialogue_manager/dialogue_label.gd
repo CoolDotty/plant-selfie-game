@@ -36,6 +36,17 @@ var is_typing: bool = false:
 	get:
 		return is_typing
 
+var speed = 0
+
+func _ready():
+	spoke.connect(
+		func(a, b, c):
+			if speed >= 1.0:
+				Global.play_blip(Global.current_bloop)
+				speed = 0.0
+			else:
+				speed += 0.25
+	)
 
 func _process(delta: float) -> void:
 	if self.is_typing:

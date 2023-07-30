@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg1b3ggmj0sre"]
+
+[ext_resource type="PackedScene" uid="uid://cgcqvj60iu6m2" path="res://scenes/flower/flower.tscn" id="1_kkwlp"]
+[ext_resource type="Texture2D" uid="uid://boygtya4frqej" path="res://assets/plants/greenherb.png" id="2_37jct"]
+
+[node name="greenherb" instance=ExtResource("1_kkwlp")]
+full_name = "Green Herb"
+front_sprite = ExtResource("2_37jct")
+
+[node name="Billboard" parent="." index="1"]
+texture = ExtResource("2_37jct")

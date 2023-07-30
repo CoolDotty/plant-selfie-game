@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://c3jl76t6jsd0f"
+path="res://.godot/imported/animeartist_purchase.dialogue-1e6bd46f818d25f53d8966870048cb16.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/animeartist/animeartist_purchase.dialogue"
+dest_files=["res://.godot/imported/animeartist_purchase.dialogue-1e6bd46f818d25f53d8966870048cb16.tres"]
+
+[params]
+
+defaults=true

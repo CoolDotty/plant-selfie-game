@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://bowyjhf8w1fd1"
+path="res://.godot/imported/animeartist.dialogue-16957b4ecc75bb64eef798f8b8e0e691.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/animeartist/animeartist.dialogue"
+dest_files=["res://.godot/imported/animeartist.dialogue-16957b4ecc75bb64eef798f8b8e0e691.tres"]
+
+[params]
+
+defaults=true
