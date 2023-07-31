@@ -1,9 +1,13 @@
-Cassidy: [[Hi|Hai|Ko-knee-chi-wah]], I love your store!
+Cassidy: [[Hi|Hai|Ko-knee-chi-wah]], this place smells so sakura!
 - What's up?
 	Cassidy: I commission Tora-chan for art all the time!
-	Cassidy: Her timeline is full of sunflowers.
+	Cassidy: She has a huge collection of rose photos for reference!
 	- Uh, cool ... I think ... => END
-- Thanks! bye!
+- What's hip with the kids?
+	Cassidy: The "teenagers" like myself are all about Mr. Yeast videos!
+	Cassidy: I tag him in every photo of me on x-memes!
+	- Well that's certaintly ... a hobby => END
+- Thanks I guess
 	Cassidy: Believe it!
 	=> END
 

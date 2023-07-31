@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd7t4yxpekp50"]
+[gd_scene load_steps=7 format=3 uid="uid://dd7t4yxpekp50"]
 
 [ext_resource type="PackedScene" uid="uid://bj8b84ws0xe1e" path="res://scenes/customer/customer.tscn" id="1_6mx8n"]
 [ext_resource type="Texture2D" uid="uid://brg3iguh5vlww" path="res://assets/npc_bodies/hanna_front.png" id="2_jv237"]
 [ext_resource type="Texture2D" uid="uid://d4dgime4r6q0" path="res://assets/npc_bodies/hanna_back.png" id="3_7hki3"]
 [ext_resource type="Resource" uid="uid://7cxl1ppdpwsh" path="res://scenes/npcs/streamer/streamer.dialogue" id="4_y7sl2"]
 [ext_resource type="Resource" uid="uid://dc85d55427gc2" path="res://scenes/npcs/streamer/streamer_purchase.dialogue" id="5_lffr7"]
+[ext_resource type="Resource" uid="uid://dim3b8j03hweh" path="res://scenes/npcs/streamer/streamer_thanks.dialogue" id="6_8tfgs"]
 
 [node name="streamer" instance=ExtResource("1_6mx8n")]
 full_name = "Hanna"
@@ -12,10 +13,10 @@ front_sprite = ExtResource("2_jv237")
 back_sprite = ExtResource("3_7hki3")
 dialogue = ExtResource("4_y7sl2")
 purchase_dialogue = ExtResource("5_lffr7")
-bloop = "bloop1"
+thanks_dialogue = ExtResource("6_8tfgs")
 
 [node name="Billboard" parent="." index="1"]
 texture = ExtResource("2_jv237")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(-1.03365, 0, 7.19828)
+target_position = Vector3(-3.51569, 0, -3.52413)

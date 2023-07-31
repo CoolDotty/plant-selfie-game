@@ -9,16 +9,19 @@ func p(poi, foi, site, customer):
 		"customer": customer
 	}
 
+
+# facebook, deviantart, instagram, reddit
 var progressions = [
-	p(null, null, "facebook", preload("res://scenes/npcs/jim/jim.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/lucio/lucio.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/animeartist/animeartist.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/billygates/billygates.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/mrbeast/mrbeast.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/omegaboomer/omegaboomer.tscn")),
-	p(null, null, "facebook", preload("res://scenes/npcs/streamer/streamer.tscn"))
+	p(null, null, "", preload("res://scenes/npcs/jim/jim.tscn")),
+	p(null, "Mushroom", "facebook", preload("res://scenes/npcs/weaboo/weaboo.tscn")),
+	p(null, "Chrysanthemum", "facebook", preload("res://scenes/npcs/omegaboomer/omegaboomer.tscn")),
+	p(null, "Rose", "deviantart", preload("res://scenes/npcs/animeartist/animeartist.tscn")),
+	p("Cassidy", null, "reddit", preload("res://scenes/npcs/mrbeast/mrbeast.tscn")),
+	p("Jonathan", null, "deviantart", preload("res://scenes/npcs/lucio/lucio.tscn")),
+	p(null, "Lotus", "facebook", preload("res://scenes/npcs/streamer/streamer.tscn")),
+	p("Mr Yeast", "Sunflower", "instagram", preload("res://scenes/npcs/billygates/billygates.tscn"))
 ]
+# preload("res://scenes/npcs/lucio/lucio.tscn"))
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,10 +32,11 @@ func _start_game():
 	await get_tree().create_timer(5).timeout
 	$player.do_phonecall($player.tutorial_call)
 	await get_tree().create_timer(5).timeout
-	$Shoppin4Plantz.finished.connect(func(): $Shoppin4Plantz.play())
+	$Shoppin4Plantz.finished.connect(func(): [$Shoppin4Plantz, $shop_song].pick_random().play())
+	$shop_song.finished.connect(func(): [$Shoppin4Plantz, $shop_song].pick_random().play())
 	DialogueManager.dialogue_ended.connect(
 		func(a):
-			$Shoppin4Plantz.play()
+			[$Shoppin4Plantz, $shop_song].pick_random().play()
 	, CONNECT_ONE_SHOT)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,9 +57,13 @@ var fadeout = preload("res://scenes/util/fadeout.tscn")
 var credits = preload("res://scenes/credits.tscn")
 
 func end_game():
-	add_child(fadeout.instantiate())
-	await get_tree().create_timer(5).timeout
-	get_tree().change_scene_to_packed(credits)
+	$player.do_phonecall($player.finish_call)
+	DialogueManager.dialogue_ended.connect(
+		func(d):
+			add_child(fadeout.instantiate())
+			await get_tree().create_timer(5).timeout
+			get_tree().change_scene_to_packed(credits)
+	)
 	
 
 func _on_player_photo_taken(texture: Texture, poi: Customer, foi: Flower, site: String, everything):
@@ -86,10 +94,12 @@ func init_customer(prog, texture):
 	$LikesNotification/Label.text = "%s people liked your post" % randi_range(100, 500)
 	$LikesNotification.go()
 	Global.play_sound("like")
+	# 3
 	await get_tree().create_timer(3).timeout
 	Global.play_sound("comment")
 	$CommentNotification/Label.text = "%s followed you!" % unlocked_customer.full_name
 	$CommentNotification.go()
+	# 5
 	await get_tree().create_timer(5).timeout
 	unlocked_customer.position = $StoreExit.position
 	$StoreExit/DoorChime.play()

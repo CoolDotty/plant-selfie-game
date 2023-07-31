@@ -1,9 +1,10 @@
-Mr Yeast: [[Hi]], I love your store!
+Mr Yeast: Hi, I love the lighting you got here!
 - What's up?
-	Mr Yeast: Not much!
-	- Thanks => END
-- Thanks! bye!
-	Mr Yeast: Later!
+	Mr Yeast: Did you know Gilly Yates follows me?
+	Mr Yeast: He likes every single photo I post on Bandz
+	- Wow!
+	=> END
+- Thanks! It sure brightens up my day!
 	=> END
 
 => END

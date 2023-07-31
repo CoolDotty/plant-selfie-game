@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dt6jmjihvqh3x"]
+[gd_scene load_steps=28 format=3 uid="uid://dt6jmjihvqh3x"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_avdhi"]
 [ext_resource type="Texture2D" uid="uid://cie1ysgxan0ui" path="res://assets/icon.svg" id="2_0g55o"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bbr0wdm7mgkuy" path="res://assets/phone_overlay.png" id="2_thmkd"]
 [ext_resource type="Texture2D" uid="uid://be84k8o7nts3g" path="res://assets/circle.png" id="2_yhcll"]
 [ext_resource type="Resource" uid="uid://bmt2f2tlp3nup" path="res://scenes/player/boss_sell_call.dialogue" id="3_nwnep"]
+[ext_resource type="Resource" uid="uid://dfkssa421djpo" path="res://scenes/player/boss_finish.dialogue" id="4_cwkr8"]
 [ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="4_nmboj"]
 [ext_resource type="Texture2D" uid="uid://dt67vr3oggp70" path="res://assets/logos/facebooklogo.png" id="5_wt8dn"]
 [ext_resource type="Texture2D" uid="uid://dhxi8n2lagu7b" path="res://assets/logos/deviantartlogo.png" id="6_2txdh"]
@@ -109,6 +110,7 @@ points = PackedVector3Array(-0.5, -0.25, 0, 0.5, -0.25, 0, 0.5, 0.25, 0, -0.5, 0
 script = ExtResource("1_avdhi")
 tutorial_call = ExtResource("2_5kdj4")
 sell_call = ExtResource("3_nwnep")
+finish_call = ExtResource("4_cwkr8")
 
 [node name="hand" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229511, -0.289266)
@@ -138,6 +140,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 2.35619
 
 [node name="BG" type="MarginContainer" parent="PhoneUI"]
 layout_mode = 0
@@ -171,7 +174,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PhoneUI/CameraAppView/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(292, 515)
 render_target_update_mode = 0
 
 [node name="phone_camera" type="Camera3D" parent="PhoneUI/CameraAppView/SubViewportContainer/SubViewport"]

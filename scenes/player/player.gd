@@ -37,6 +37,7 @@ var jump_vel: Vector3 # Jumping velocity
 
 @export var tutorial_call: DialogueResource
 @export var sell_call: DialogueResource
+@export var finish_call: DialogueResource
 
 @onready var CameraAppView = $PhoneUI/CameraAppView
 @onready var GallaryAppView = $PhoneUI/GallaryAppView
@@ -316,7 +317,7 @@ func sell(to: Customer):
 	var thing_held = $hand.get_child(0)
 	$hand.remove_child(thing_held)
 	await get_tree().physics_frame
-	var didsell = to.sell(thing_held)
+	var didsell = to.sell(thing_held, self)
 	if not didsell:
 		$hand.add_child(thing_held)
 

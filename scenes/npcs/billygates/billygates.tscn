@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://4y85rv4tvtb4"]
+[gd_scene load_steps=7 format=3 uid="uid://4y85rv4tvtb4"]
 
 [ext_resource type="PackedScene" uid="uid://bj8b84ws0xe1e" path="res://scenes/customer/customer.tscn" id="1_k4k6i"]
 [ext_resource type="Texture2D" uid="uid://dwcxypcnx7cj0" path="res://assets/npc_bodies/billy_front.png" id="2_a7wha"]
 [ext_resource type="Texture2D" uid="uid://b5amt3gw1kw6l" path="res://assets/npc_bodies/billy_back.png" id="3_xd82x"]
 [ext_resource type="Resource" uid="uid://ccrer81kliuis" path="res://scenes/npcs/billygates/billygates.dialogue" id="4_wourn"]
 [ext_resource type="Resource" uid="uid://bfuct0xrp27my" path="res://scenes/npcs/billygates/billygates_purchase.dialogue" id="5_vhoyf"]
+[ext_resource type="Resource" uid="uid://rwg32q7jrwdc" path="res://scenes/npcs/billygates/billygates_thanks.dialogue" id="6_75vkr"]
 
 [node name="billygates" instance=ExtResource("1_k4k6i")]
 full_name = "Gilly Bates"
@@ -12,10 +13,10 @@ front_sprite = ExtResource("2_a7wha")
 back_sprite = ExtResource("3_xd82x")
 dialogue = ExtResource("4_wourn")
 purchase_dialogue = ExtResource("5_vhoyf")
-bloop = "bloop1"
+thanks_dialogue = ExtResource("6_75vkr")
 
 [node name="Billboard" parent="." index="1"]
 texture = ExtResource("2_a7wha")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(5.5301, 0, 5.70926)
+target_position = Vector3(2.80176, 0, 4.85801)

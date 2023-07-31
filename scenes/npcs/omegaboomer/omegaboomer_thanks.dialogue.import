@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://5xsp34plwk7n"
+path="res://.godot/imported/omegaboomer_thanks.dialogue-b500de1b8b2308341b18a31c0ea1aedd.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/omegaboomer/omegaboomer_thanks.dialogue"
+dest_files=["res://.godot/imported/omegaboomer_thanks.dialogue-b500de1b8b2308341b18a31c0ea1aedd.tres"]
+
+[params]
+
+defaults=true

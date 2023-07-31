@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c3hmnfrwj1o33" path="res://scenes/util/Billboard.tscn" id="2_y0425"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mkldu"]
-radius = 0.5655
+radius = 0.1
 height = 16.0
 
 [node name="customer" type="CharacterBody3D"]
@@ -22,3 +22,6 @@ avoidance_enabled = true
 
 [node name="hand" type="Node3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 2.5, -1.5)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 1.0

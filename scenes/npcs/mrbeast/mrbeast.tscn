@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4hn6alqxlt11"]
+[gd_scene load_steps=7 format=3 uid="uid://c4hn6alqxlt11"]
 
 [ext_resource type="PackedScene" uid="uid://bj8b84ws0xe1e" path="res://scenes/customer/customer.tscn" id="1_c6vnv"]
 [ext_resource type="Texture2D" uid="uid://dqaw8wqmikuk5" path="res://assets/npc_bodies/mr_yeast_front.png" id="2_3g81m"]
 [ext_resource type="Texture2D" uid="uid://ctlytw2augkdh" path="res://assets/npc_bodies/mr_yeast_back.png" id="3_wi0ya"]
 [ext_resource type="Resource" uid="uid://cj2s18iqx7g0f" path="res://scenes/npcs/mrbeast/mrbeast.dialogue" id="4_4nufi"]
 [ext_resource type="Resource" uid="uid://gmoghwlncks4" path="res://scenes/npcs/mrbeast/mrbeast_purchase.dialogue" id="5_18y8t"]
+[ext_resource type="Resource" uid="uid://uqydnqkg7cb6" path="res://scenes/npcs/mrbeast/mrbeast_thanks.dialogue" id="6_nxpbh"]
 
 [node name="mrbeast" instance=ExtResource("1_c6vnv")]
 full_name = "Mr Yeast"
@@ -12,10 +13,10 @@ front_sprite = ExtResource("2_3g81m")
 back_sprite = ExtResource("3_wi0ya")
 dialogue = ExtResource("4_4nufi")
 purchase_dialogue = ExtResource("5_18y8t")
-bloop = "bloop1"
+thanks_dialogue = ExtResource("6_nxpbh")
 
 [node name="Billboard" parent="." index="1"]
 texture = ExtResource("2_3g81m")
 
 [node name="NavigationAgent3D" parent="." index="2"]
-target_position = Vector3(8.17592, 0, -6.02715)
+target_position = Vector3(-4.82142, 0, 3.76069)

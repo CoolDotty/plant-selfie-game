@@ -1,8 +1,11 @@
-Jim: This place looks lovey!
-- How are you?
-	Jim: I'm great, thank you for asking!
-	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
-	- For sure! => END
-- Thank you! => END
+Hanna: Wow! This place is so asthetic.
+- What's up?
+	Hanna: I did a sponsored stream for Macrosoft recently!
+	Hanna: It was honestly a slog posting so more #ad posts on Bandz
+	Hanna: But the cash was so worth it.
+	- Maybe I should switch careers ... 
+		=> END
+- So true! 
+	=> END
 
 => END

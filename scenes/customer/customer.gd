@@ -9,6 +9,7 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var back_sprite = preload("res://icon.svg")
 @export var dialogue: DialogueResource
 @export var purchase_dialogue: DialogueResource
+@export var thanks_dialogue: DialogueResource
 @export var bloop: String = "bloop1"
 
 var looking_at: Node3D = null
@@ -20,6 +21,8 @@ var movement_target_position: Vector3 = Vector3(-3.0, 0.0, 2.0)
 var my_photo: Texture
 
 var exiting = false
+
+var money = preload("res://scenes/money/money.tscn")
 
 func _path_random_pos():
 	const r = 10
@@ -115,15 +118,42 @@ func _physics_process(delta):
 	
 	move_and_slide()
 
-func sell(plant: Node3D):
+func sell(plant: Node3D, player: Node3D):
 	if exiting: return false
 	if $hand.get_child_count() > 0: return false
 	$hand.add_child(plant)
 	# play cha-ching
 	Global.play_sound("purchase")
-	# Leave store
-	set_movement_target(get_parent().get_node("StoreExit").position)
-	exiting = true
+	for i in range(0, 25):
+		var m = money.instantiate()
+		m.position = position
+		m.rotation.y = rotation.y
+		get_parent().add_child(m)
+	
+	# thanks_dialogue
+	abort_movement()
+	looking_at = player
+	var target_angle = lerp_angle(0, looking_at.get_node("Camera").global_rotation.y + PI, 1.0)
+	if abs(rotation.y - target_angle) > PI / 2:
+		# Jump! Surprise!
+		velocity = Vector3(0, 3, 0)
+		move_and_slide()
+	Global.current_bloop = bloop
+	DialogueManager.show_example_dialogue_balloon(thanks_dialogue)
+	
+	if abs(rotation.y - target_angle) > PI / 2:
+		# Jump! Surprise!
+		velocity = Vector3(0, 3, 0)
+		move_and_slide()
+	
+	
+	DialogueManager.dialogue_ended.connect(
+		func(d):
+			# Leave store
+			set_movement_target(get_parent().get_node("StoreExit").position)
+			exiting = true
+	, CONNECT_ONE_SHOT)
+	
 	return true
 
 var i_am_talking = false

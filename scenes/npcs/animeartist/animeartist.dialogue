@@ -1,8 +1,11 @@
-Jim: This place looks lovey!
+Vivian: Oooh! So many colors here I love it!
 - How are you?
-	Jim: I'm great, thank you for asking!
-	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
-	- For sure! => END
-- Thank you! => END
+	Vivian: Sunflowers are so popular with the richies right now.
+	Vivian: I got a commission from Gilly Yates recently.
+	Vivian: I wish he paid me enough I could as rich as him...
+	- Same ... 
+		=> END
+- Me too! 
+	=> END
 
 => END

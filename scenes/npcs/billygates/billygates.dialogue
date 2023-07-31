@@ -1,8 +1,6 @@
-Jim: This place looks lovey!
-- How are you?
-	Jim: I'm great, thank you for asking!
-	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
-	- For sure! => END
-- Thank you! => END
+Gilly Yates: Nice to see a local growing establishment!
+Gilly Yates: Reminds me of when I started out as an entrepreneur.
+- Thank you! 
+	=> END
 
 => END

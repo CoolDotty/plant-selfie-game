@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://cvk51ysban8db"
+path="res://.godot/imported/jim_thanks.dialogue-f1a240cff8bda38f9c56609259dfff3d.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/jim/jim_thanks.dialogue"
+dest_files=["res://.godot/imported/jim_thanks.dialogue-f1a240cff8bda38f9c56609259dfff3d.tres"]
+
+[params]
+
+defaults=true

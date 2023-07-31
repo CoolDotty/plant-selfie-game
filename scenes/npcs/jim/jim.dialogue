@@ -1,8 +1,14 @@
-Jim: This place looks lovey!
+Jim: This place looks lovey. I saw your cute photo!
+- What's up?
+	Jim: My Grandson always helps me post things on Based Book
+	Jim: I know he loves mushrooms! you should post some pictures of a mushroom on Based Book!
+	- For sure!
+	=> END
 - How are you?
-	Jim: I'm great, thank you for asking!
-	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
-	- For sure! => END
-- Thank you! => END
+	Jim: Great! I keep up with my old pal Jonathan. He loves chrysanthemum, you should post a picture of one on Based Book and he'll see it!
+	- Thanks for the tip!
+	=> END
+- Thanks!
+	=> END
 
 => END

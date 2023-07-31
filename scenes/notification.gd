@@ -3,7 +3,7 @@ extends ColorRect
 
 var start = 0
 
-var pos_in: float = 25
+var pos_in: float = 50
 var pos_out: float = -250
 
 func go():
@@ -21,7 +21,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	if Time.get_unix_time_from_system() > start + 5:
-		position.x = lerp(position.x, pos_out, 0.05)
+		position.x = lerp(position.x, pos_out, 0.1)
 	else:
-		position.x = lerp(position.x, pos_in, 0.05)
+		position.x = lerp(position.x, pos_in, 0.1)
 	$Label.global_position = position

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://rwg32q7jrwdc"
+path="res://.godot/imported/billygates_thanks.dialogue-f38111e31aadfc89a80a3ed35b9669c2.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/billygates/billygates_thanks.dialogue"
+dest_files=["res://.godot/imported/billygates_thanks.dialogue-f38111e31aadfc89a80a3ed35b9669c2.tres"]
+
+[params]
+
+defaults=true

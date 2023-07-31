@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://uqydnqkg7cb6"
+path="res://.godot/imported/mrbeast_thanks.dialogue-e1e72e589ed4070c0607a5f3f61be2c0.tres"
+
+[deps]
+
+source_file="res://scenes/npcs/mrbeast/mrbeast_thanks.dialogue"
+dest_files=["res://.godot/imported/mrbeast_thanks.dialogue-e1e72e589ed4070c0607a5f3f61be2c0.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_8"
+type="Resource"
+uid="uid://dfkssa421djpo"
+path="res://.godot/imported/boss_finish.dialogue-a0be7311b0f2d6dcac35d69d327a8176.tres"
+
+[deps]
+
+source_file="res://scenes/player/boss_finish.dialogue"
+dest_files=["res://.godot/imported/boss_finish.dialogue-a0be7311b0f2d6dcac35d69d327a8176.tres"]
+
+[params]
+
+defaults=true

@@ -1,8 +1,10 @@
-Jim: This place looks lovey!
-- How are you?
-	Jim: I'm great, thank you for asking!
-	Jim: Can you take a picture of me? I'd like to send it to my grandson on Facebook 
-	- For sure! => END
-- Thank you! => END
+Jonathan: This place me pleasin my sniffers.
+- Uh, how are you?
+	Jonathan: I'm trying to stay hip so I follow Lucio on Artstagram
+	Jonathan: He actually followed me back and likes all the posts I'm tagged in.
+	- That sure sounds like a fact. 
+		=> END
+- Uh, thank you?
+	Jonathan: You bet.
 
 => END

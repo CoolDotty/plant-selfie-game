@@ -1,7 +1,9 @@
-Lucio: [[Hi|Yo|Sup]]! I your store rocks!
+Lucio: [[Hi|Yo|Sup]]! Your store rocks!
 - What's up?
-	Lucio: Daisy's are sooo hot in the anime community right now
-	- Sounds cool! => END
+	Lucio: My friend Hanna did a sweet sponsorship recently. We keep in touch.
+	Lucio: Can you put a photo of a lotus on Based Book? She'd think it's super dope.
+	- For sure! 
+		=> END
 - Thanks! bye!
 	Lucio: Catch you on the flip side!
 	=> END
