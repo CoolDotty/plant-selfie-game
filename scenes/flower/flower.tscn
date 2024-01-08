@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgcqvj60iu6m2"]
+[gd_scene load_steps=6 format=3 uid="uid://cgcqvj60iu6m2"]
 
 [ext_resource type="Script" path="res://scenes/flower/flower.gd" id="1_hqcv4"]
 [ext_resource type="PackedScene" uid="uid://c3hmnfrwj1o33" path="res://scenes/util/Billboard.tscn" id="2_f12da"]
 [ext_resource type="Shader" path="res://scenes/flower/flower.gdshader" id="3_2w4f0"]
-[ext_resource type="Texture2D" uid="uid://1lm28mqcr8ay" path="res://icon.svg" id="4_pr8ah"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_usfma"]
 radius = 0.1
@@ -12,10 +11,6 @@ height = 0.6
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir4bu"]
 render_priority = 0
 shader = ExtResource("3_2w4f0")
-shader_parameter/scale = Vector3(1, 1, 1)
-shader_parameter/wind_strength = null
-shader_parameter/wind_speed = null
-shader_parameter/albedo_texture = ExtResource("4_pr8ah")
 
 [node name="flower" type="CharacterBody3D"]
 velocity = Vector3(0, -694.027, 0)
